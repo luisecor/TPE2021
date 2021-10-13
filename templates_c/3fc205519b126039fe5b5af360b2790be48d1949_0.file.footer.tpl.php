@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-10-13 00:26:22
+/* Smarty version 3.1.39, created on 2021-10-13 22:04:08
   from 'C:\xampp\htdocs\proyectos\web2-2021\TPE-Bootstrap\ANITA\TPE-master\templates\footer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_61660b8edf9a36_75541591',
+  'unifunc' => 'content_61673bb8e58fd5_64696155',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3fc205519b126039fe5b5af360b2790be48d1949' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyectos\\web2-2021\\TPE-Bootstrap\\ANITA\\TPE-master\\templates\\footer.tpl',
-      1 => 1634077580,
+      1 => 1634155393,
       2 => 'file',
     ),
   ),
@@ -20,29 +20,25 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61660b8edf9a36_75541591 (Smarty_Internal_Template $_smarty_tpl) {
-?>    </div>
-    </div>
+function content_61673bb8e58fd5_64696155 (Smarty_Internal_Template $_smarty_tpl) {
+?>   
     </div>
     <div class="row text-center fixed-bottom "> 
-     <div class="row justify-content-md-center align-items-center ">
+      <div class="row justify-content-md-center align-items-center ">
 
-          <div class="col-2 ">
-            <div class="col">Powered by </div>
-          
-          </div>
-          <div class="col-3">
+        <div class="col-2 ">
+          <div class="col">Powered by </div>
+        </div>
+        <div class="col-3">
           <div class="row ">
-              <div class="col-1 p-1"><ion-icon  name="logo-instagram"></ion-icon></div>
-              <div class="col-1  "> <p> @anitacelani_ </div>
-           </div>
-           <div class="row">
-              <div class="col-1 p-1"><ion-icon  name="logo-instagram"></ion-icon></div>
-              <div class="col-1 "> <p> @luchitocordoba </div>
-           </div
-     </div>
-     
-    
+            <div class="col-1 p-1"><ion-icon  name="logo-instagram"></ion-icon></div>
+            <div class="col-1  "> <p> @anitacelani_ </div>
+          </div>
+          <div class="row">
+            <div class="col-1 p-1"><ion-icon  name="logo-instagram"></ion-icon></div>
+            <div class="col-1 "> <p> @luchitocordoba </div>
+          </div
+      </div>
     </div>
     
     <!-- Optional JavaScript; choose one of the two! -->
