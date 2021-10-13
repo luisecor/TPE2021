@@ -1,25 +1,21 @@
-    </div>
-    </div>
+   
     </div>
     <div class="row text-center fixed-bottom "> 
-     <div class="row justify-content-md-center align-items-center ">
+      <div class="row justify-content-md-center align-items-center ">
 
-          <div class="col-2 ">
-            <div class="col">Powered by </div>
-          
-          </div>
-          <div class="col-3">
+        <div class="col-2 ">
+          <div class="col">Powered by </div>
+        </div>
+        <div class="col-3">
           <div class="row ">
-              <div class="col-1 p-1"><ion-icon  name="logo-instagram"></ion-icon></div>
-              <div class="col-1  "> <p> @anitacelani_ </div>
-           </div>
-           <div class="row">
-              <div class="col-1 p-1"><ion-icon  name="logo-instagram"></ion-icon></div>
-              <div class="col-1 "> <p> @luchitocordoba </div>
-           </div
-     </div>
-     
-    
+            <div class="col-1 p-1"><ion-icon  name="logo-instagram"></ion-icon></div>
+            <div class="col-1  "> <p> @anitacelani_ </div>
+          </div>
+          <div class="row">
+            <div class="col-1 p-1"><ion-icon  name="logo-instagram"></ion-icon></div>
+            <div class="col-1 "> <p> @luchitocordoba </div>
+          </div
+      </div>
     </div>
     
     <!-- Optional JavaScript; choose one of the two! -->
