@@ -49,7 +49,7 @@ class ProductoController {
     function addProducto(){
         $this->authHelper->checkLoggedIn();
         if (isset($_REQUEST['nombre']) && !empty($_REQUEST['nombre'])
-            && isset($_REQUEST['precio']) && $_REQUEST['precio']>0
+            && isset($_REQUEST['precio']) && $_REQUEST['precio']>=0
             && isset($_REQUEST['categoria'])
             && isset($_REQUEST['descripcion']) ){ //Consultar si con el EMPTY es suficiente, Preguntar si se puede poner REQUIRED en el FORM
                //addProducto($nombre, $precio, $categoria, $descripcion )
