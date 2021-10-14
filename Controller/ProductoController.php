@@ -51,27 +51,20 @@ class ProductoController {
         if (isset($_REQUEST['nombre']) && !empty($_REQUEST['nombre'])
             && isset($_REQUEST['precio']) && $_REQUEST['precio']>=0
             && isset($_REQUEST['categoria'])
-            && isset($_REQUEST['descripcion']) ){ //Consultar si con el EMPTY es suficiente, Preguntar si se puede poner REQUIRED en el FORM
-               //addProducto($nombre, $precio, $categoria, $descripcion )
+            && isset($_REQUEST['descripcion']) ){ 
                $this->productoModel->addProducto($_REQUEST['nombre'], $_REQUEST['precio'],$_REQUEST['categoria'], $_REQUEST['descripcion']);
-               header("Location: ".BASE_URL."verProductos"); //Pusimos esto para que cuano refresques la pagina no te vuelva a agregar el mismo elmenento
-                
-        } else {
-            //Hubo un error
-            //$this->view->formAddProducto("Revisar que los campos sean correctos");
-        }
+               header("Location: ".BASE_URL."verProductos"); //Pusimos esto para que cuano refresques la pagina no te vuelva a agregar el mismo elmenento       
+        } 
 
     }
 
     
     function updateProductoMenu($id){
         $producto = $this->productoModel->getProduct($id);
-        if ( $producto) {
+        if ($producto) {
             $this->authHelper->checkLoggedIn();
             $this->productoView->updateProductoMenu($producto, $this->categoriaModel->getCategorias());
-        } else {
-            echo "PRODUCTO INEXISTENTE";
-        }        
+        }       
     }
 
     function updateProducto(){
@@ -83,10 +76,7 @@ class ProductoController {
            
             $this->productoModel->updateProduct($_REQUEST['id'], $_REQUEST['nombre'],$_REQUEST['descripcion'], $_REQUEST['precio'], $_REQUEST['categoria']);
             $this->getProducts();
-        } else {
-            echo "ALGO MAL SETEADO";
-        }
-
+        } 
     }
 
 }

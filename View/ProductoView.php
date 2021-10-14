@@ -26,7 +26,7 @@ class ProductoView {
          $this->smarty->assign("producto",$producto);
          $this->smarty->assign('categorias',$categorias);
          $this->smarty->assign('logueado', $logueado);
-         $this->smarty->display('./templates/forms/formProducto.tpl');
+         $this->smarty->display('./templates/forms/formProductoUpdate.tpl');
      }
  
      function showProduct($producto){
@@ -35,7 +35,7 @@ class ProductoView {
      }
 
      function showFormProductos($categorias){
-        $this->smarty->assign('logueado', true);//Esto esta mal... porque puedo ingresas sabiendo la url
+        $this->smarty->assign('logueado', true);
         $this->smarty->assign('categorias',$categorias);
         $this->smarty->display('./templates/forms/formProducto.tpl');
 

@@ -9,7 +9,6 @@ class LoginView {
     function __construct($CATEGORIAS) { 
         $this->smarty = new Smarty();
         $this->smarty->assign('CATEGORIAS', $CATEGORIAS);
-       // $this->smarty->assign('logueado', $logueado);
         $this->smarty->assign('base_url',BASE_URL);
     }
 

@@ -69,7 +69,7 @@ switch ($params[0]) {
         $productoController->updateProductoMenu($params[1]);
         break;
     case 'searchClave':
-        $categoriaController->searchClave();
+        $categoriaController->showHome();
         break;
     case 'login':
         $loginController->showLogin();
