@@ -34,7 +34,10 @@ class CategoriaController{
         //echo($_REQUEST['search']);
         $clave = $_REQUEST['search'];
         if ($clave){
-            $this->productoModel->searchClave($clave);
+            $searched = $this->productoModel->searchClave($clave);
+            if ($searched){
+                print_r ($searched);
+            }
         } else {
           //  $this->view->
         } 
