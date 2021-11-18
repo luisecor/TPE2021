@@ -1,6 +1,6 @@
 <?php
 
-class LoginModel{
+class UsuariosModel{
 
     private $db;
 
@@ -13,4 +13,10 @@ class LoginModel{
         $query->execute([$email]);
         return $query->fetch(PDO::FETCH_OBJ);
     }
+
+    function insertNewUser($email, $password){
+        $query = $this->db->prepare('INSERT INTO usuario (email, password) VALUES (?, ?)');
+        $query->execute([$email, $password]);
+    }
+
 }

@@ -1,24 +1,24 @@
 <?php
 
-require_once './Model/LoginModel.php';
+require_once 'View/UsuariosView.php';
+require_once 'Model/UsuariosModel.php';
+require_once 'Helpers/AuthHelper.php';
+require_once 'Model/CategoriaModel.php';
 
-require_once './View/LoginView.php';
 
-
-class LoginController {
+class UsuariosController {
 
     private $model;
-    private $view;
     private $categoriasModel;
+    private $view;
     private $authHelper;
- 
 
     function __construct(){
+        $this->model = new UsuariosModel();
         $this->categoriasModel = new CategoriaModel();
         $this->authHelper = new AuthHelper();
-        $this->model = new LoginModel();
-        $this->view = new LoginView($this->categoriasModel->getCategorias(),false);
-       
+        $this->view = new UsuariosView($this->categoriasModel->getCategorias(), false);
+        
     }
 
     function showLogin(){
@@ -52,8 +52,26 @@ class LoginController {
         $this->view->showLogin("Deslogueado");
     }
 
-    
- 
+    function formNewUser(){
+        if($this->authHelper->loggedIn()) {
+            header("Location: ".BASE_URL."home"); 
+        }
+        $this->view->showFormNewUser();       
+    }
 
-  
+    function newUser(){
+        if(!empty($_POST['email']) && !empty($_POST['password'])) {
+            $email = $_POST['email'];
+            $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+            $user = $this->model->getUser($email);
+            if(!$user) { 
+                $this->model->insertNewUser($email, $password);
+                $this->verifyLogin();
+            } else {
+                $error = 'Usuario existente';
+                $this->view->showFormNewUser($error);
+            }
+        }
+    }
+
 }

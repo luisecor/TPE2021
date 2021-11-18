@@ -60,6 +60,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{BASE_URL}login">Login</a>
                         </li>
+                           <li class="nav-item">
+                            <a class="nav-link" href="{BASE_URL}signIn">Sign In</a>
+                        </li>
                     {/if}
                 </ul>
             </div>

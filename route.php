@@ -2,7 +2,7 @@
 
 require_once 'Controller/ProductoController.php';
 require_once 'Controller/CategoriaController.php';
-require_once 'Controller/LoginController.php';
+require_once 'Controller/UsuariosController.php';
 
 
 define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
@@ -18,7 +18,8 @@ $params = explode('/', $action);
 
 $categoriaController = new CategoriaController();
 $productoController = new ProductoController();
-$loginController = new LoginController();
+$usuariosController = new UsuariosController();
+$usuariosController = new UsuariosController();
 
 switch ($params[0]) {
     case 'home': 
@@ -70,13 +71,19 @@ switch ($params[0]) {
         $categoriaController->showHome();
         break;
     case 'login':
-        $loginController->showLogin();
+        $usuariosController->showLogin();
         break;
     case 'verify':
-        $loginController->verifyLogin();
+        $usuariosController->verifyLogin();
         break;
     case 'logout':
-        $loginController->logout();
+        $usuariosController->logout();
+        break;
+    case 'signIn':
+        $usuariosController->formNewUser();
+        break;
+    case 'newUser':
+        $usuariosController->newUser();
         break;
     default: 
         echo('404 Page not found'); 

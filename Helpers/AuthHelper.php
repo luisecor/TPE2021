@@ -1,10 +1,7 @@
 <?php
 
-require_once './View/LoginView.php';
 
 class AuthHelper{
-
-    private $viewLogin;
 
 
     function checkLoggedIn(){
@@ -14,8 +11,28 @@ class AuthHelper{
         }
     }
 
-    function loggedIn(){
+    function getRole(){
         session_start();
-        return isset($_SESSION['email']);
+        if(isset($_SESSION['email'])){
+            return  $_SESSION['roleUser'];
+        } else {
+            return 0;
+        }
     }
+
+    function getEmail(){
+        session_start();
+        if(isset($_SESSION['email'])){
+            return  $_SESSION['email'];
+        } else {
+            return null;
+        }
+
+    }
+
+    function loggedIn(){
+        return $this->getRole() > 0;
+    }
+
+
 }

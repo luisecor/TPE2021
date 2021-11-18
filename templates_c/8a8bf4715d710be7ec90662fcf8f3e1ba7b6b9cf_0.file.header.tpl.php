@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-11-18 15:39:39
+/* Smarty version 3.1.39, created on 2021-11-18 16:32:56
   from 'C:\xampp\htdocs\proyectos\web2-2021\TPE-Bootstrap\ANITA\TPE-master\templates\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_619665ab781d06_06032300',
+  'unifunc' => 'content_6196722861cc47_84455083',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8a8bf4715d710be7ec90662fcf8f3e1ba7b6b9cf' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyectos\\web2-2021\\TPE-Bootstrap\\ANITA\\TPE-master\\templates\\header.tpl',
-      1 => 1637246112,
+      1 => 1637249573,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_619665ab781d06_06032300 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6196722861cc47_84455083 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="en">
 
@@ -99,6 +99,10 @@ logout">Logout</a>
                         <li class="nav-item">
                             <a class="nav-link" href="<?php echo BASE_URL;?>
 login">Login</a>
+                        </li>
+                           <li class="nav-item">
+                            <a class="nav-link" href="<?php echo BASE_URL;?>
+signIn">Sign In</a>
                         </li>
                     <?php }?>
                 </ul>

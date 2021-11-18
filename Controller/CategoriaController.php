@@ -29,7 +29,7 @@ class CategoriaController{
     function getCategorias(){
         $productos = $this->productoModel->getProducts();
         $categorias = $this->categoriaModel->getCategorias();
-        $this->categoriaView->showCategorias($categorias, $productos, $this->authHelper->loggedIn());
+        $this->categoriaView->showCategorias($categorias, $productos, $this->authHelper->getRole(), $this->authHelper->loggedIn());
     }
 
     function verPorCategoria($id){

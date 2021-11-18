@@ -19,11 +19,12 @@ class CategoriaView{
         $this->smarty->display('./templates/home.tpl');
     }
 
-    function showCategoriaS($categorias, $prouctos, $logueado, $error = null){
+    function showCategoriaS($categorias, $prouctos, $logueado, $roleUser, $error = null){
         $this->smarty->assign('base_url',BASE_URL);
         $this->smarty->assign('categorias', $categorias);
         $this->smarty->assign('productos', $prouctos);
         $this->smarty->assign('logueado', $logueado);
+        $this->smarty->assign('roleUser', $roleUser);
         $this->smarty->assign('error', $error);
         $this->smarty->display('./templates/categoriasList.tpl'); 
     }

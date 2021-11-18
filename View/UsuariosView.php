@@ -2,16 +2,28 @@
 
 require_once './libs/smarty-3.1.39/libs/Smarty.class.php';
 
-class LoginView {
+class UsuariosView{
 
     private $smarty;
 
-    function __construct($CATEGORIAS) { 
+    function __construct($CATEGORIAS,$logueado = false)
+    {
         $this->smarty = new Smarty();
         $this->smarty->assign('CATEGORIAS', $CATEGORIAS);
+        $this->smarty->assign('logueado', $logueado);
         $this->smarty->assign('base_url',BASE_URL);
     }
 
+
+    function showFormNewUser($error = ""){
+        $this->smarty->assign('titulo','Registrarse');
+        $this->smarty->assign('logueado', false);
+        $this->smarty->assign('error',$error);
+        $this->smarty->display('templates/forms/newUser.tpl');
+
+    } 
+
+    
     function showLogin($error = ""){
         $this->smarty->assign('titulo', 'Log in');
         $this->smarty->assign('logueado', false);
@@ -23,5 +35,4 @@ class LoginView {
         header("Location: ".BASE_URL."home");
     }
 
-    
 }
