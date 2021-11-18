@@ -12,7 +12,7 @@ class AuthHelper{
     }
 
     function getRole(){
-        session_start();
+        if(session_status() === PHP_SESSION_NONE) session_start();
         if(isset($_SESSION['email'])){
             return  $_SESSION['roleUser'];
         } else {
@@ -21,7 +21,7 @@ class AuthHelper{
     }
 
     function getEmail(){
-        session_start();
+        if(session_status() === PHP_SESSION_NONE) session_start();
         if(isset($_SESSION['email'])){
             return  $_SESSION['email'];
         } else {
