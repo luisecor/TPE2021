@@ -20,30 +20,6 @@ class CategoriaController{
         $this->authHelper = new AuthHelper();
         $this->categoriaView = new CategoriaView( $this->categoriaModel->getCategorias());
         $this->productoView = new ProductoView( $this->categoriaModel->getCategorias());
-<<<<<<< HEAD
-=======
-        
-
-    }
-    ///Habia creado esta funcion prque necesitaba cargar los atributos
-    /*function cargarProductosYCategoria(){
-        $this->PRODUCTOS = $this->model->getProducts();
-        $this->CATEGORIAS = $this->model->getCategorias();
-    }*/
-
-    function searchClave(){
-        //echo("CONTROLLER");
-        //echo($_REQUEST['search']);
-        $clave = $_REQUEST['search'];
-        if ($clave){
-            $searched = $this->productoModel->searchClave($clave);
-            if ($searched){
-                print_r ($searched);
-            }
-        } else {
-          //  $this->view->
-        } 
->>>>>>> f7178db6cd6a26ab22e12ab686e2934b619de894
     }
 
     function showHome(){
@@ -81,11 +57,7 @@ class CategoriaController{
             header("Location: ".BASE_URL."verCategorias");
         } else {
             $error = 'No es posible eliminar categoría con productos vinculados';
-<<<<<<< HEAD
             $this->categoriaView->showCategoriaS($this->categoriaModel->getCategorias(), $this->productoModel->getProducts(), $this->authHelper->loggedIn(), $error);
-=======
-            $this->categoriaView->showCategoriaS($this->categoriaModel->getCategorias(),$this->productoModel->getProducts(), $this->authHelper->loggedIn(), $error);
->>>>>>> f7178db6cd6a26ab22e12ab686e2934b619de894
         }
     }
 
