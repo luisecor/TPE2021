@@ -13,15 +13,13 @@ class ProductoController {
     private $categoriaModel;
     private $authHelper;
 
+//Agregamos mensajes de error?
 
-
-    function __construct()
-    {
+    function __construct() {
         $this->productoModel = new ProductoModel();
         $this->categoriaModel = new CategoriaModel();
         $this->authHelper = new AuthHelper();
-        $this->productoView = new ProductoView($this->categoriaModel->getCategorias(),false);
-        
+        $this->productoView = new ProductoView($this->categoriaModel->getCategorias(), false);      
     }
 
     function eliminarProducto($id){
@@ -53,7 +51,7 @@ class ProductoController {
             && isset($_REQUEST['categoria'])
             && isset($_REQUEST['descripcion']) ){ 
                $this->productoModel->addProducto($_REQUEST['nombre'], $_REQUEST['precio'],$_REQUEST['categoria'], $_REQUEST['descripcion']);
-               header("Location: ".BASE_URL."verProductos"); //Pusimos esto para que cuano refresques la pagina no te vuelva a agregar el mismo elmenento       
+               header("Location: ".BASE_URL."verProductos"); 
         } 
 
     }
@@ -68,12 +66,10 @@ class ProductoController {
     }
 
     function updateProducto(){
-       
         if (isset($_REQUEST['nombre']) && !empty($_REQUEST['nombre'])
             && isset($_REQUEST['precio']) && $_REQUEST['precio']>0
             && isset($_REQUEST['categoria'])
             && isset($_REQUEST['descripcion']) ){
-           
             $this->productoModel->updateProduct($_REQUEST['id'], $_REQUEST['nombre'],$_REQUEST['descripcion'], $_REQUEST['precio'], $_REQUEST['categoria']);
             $this->getProducts();
         } 

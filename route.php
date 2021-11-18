@@ -3,8 +3,6 @@
 require_once 'Controller/ProductoController.php';
 require_once 'Controller/CategoriaController.php';
 require_once 'Controller/LoginController.php';
-//require_once 'Helpers/AuthHelper.php';
-//require_once 'Controller/UsuarioController.php';
 
 
 define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');

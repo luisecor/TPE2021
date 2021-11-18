@@ -6,7 +6,7 @@
             <h2 class="text-center m-md-3 p-md-3">Lista de productos</h2>
         </div>
         <div class="row border p-1">
-            <div class="row">
+            <div class="row col-9">
                 <div class="col">
                     <h5> Nombre </h5>
                 </div>
@@ -16,33 +16,27 @@
                 <div class="col">
                     <h5> Categoria </h5>
                 </div>
+                <div class="col">
+                    <h5> Descripcion </h5>
+                </div>
             </div>
 
-            <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion accordion-flush">
                 {foreach from=$productos item=$producto}
                     <div class="row">
                         <div class="accordion-item">
-                            <h2 class="accordion-header" id="flush-heading{$producto->id_producto}">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#flush-{$producto->id_producto}" aria-expanded="false"
-                                    aria-controls="flush-{$producto->id_producto}">
-                                    <div class="col"> {$producto->nombre} </div>
-                                    <div class="col"> {$producto->precio} </div>
-                                    <div class="col">{$producto->categoria} </div>
-                                </button>
-                            </h2>
-                            <div id="flush-{$producto->id_producto}" class=" row accordion-collapse collapse"
-                                aria-labelledby="flush-heading{$producto->id_producto}"
-                                data-bs-parent="#accordionFlushExample">
-                                <hr class="dropdown-divider">
-                                <div class=" col-10">
-                                    <h5> Descripcion </h5>{$producto->descripcion}
-                                </div>
+                            <div class="accordion-button collapsed"> 
+                                <div class="col"> {$producto->nombre} </div>
+                                <div class="col"> {$producto->precio} </div>
+                                <div class="col">{$producto->categoria} </div>
+                                <div class="col"><a class="btn btn-outline-secondary btn-sm" href="{$base_url}verProducto/{{$producto->id_producto}}"> Descripción </a> </div>
                                 {if $logueado}
-                                    <div class="col-1 " scope="row"><a class="btn btn-primary"
-                                            href="{$base_url}updateProductoMenu/{{$producto->id_producto}}">Update</a></div>
-                                    <div class="col-1" scope="row"><a class="btn btn-warning"
-                                            href="{$base_url}eliminarProducto/{{$producto->id_producto}}">Eliminar</a></div>
+                                    <div class="col-1 " scope="row">
+                                        <a class="btn btn-primary" href="{$base_url}updateProductoMenu/{$producto->id_producto}">Update</a>
+                                    </div>
+                                    <div class="col-1" scope="row">
+                                        <a class="btn btn-warning" href="{$base_url}eliminarProducto/{$producto->id_producto}">Eliminar</a>
+                                    </div>
                                 {/if}
                             </div>
                         </div>

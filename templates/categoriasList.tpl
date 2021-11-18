@@ -44,25 +44,23 @@
                                         </div>
                                     </div>
                                     {foreach from=$productos item=$producto}
-                                        <div class="row">
+                                        <div class="row m-md-1">
                                             {if $producto->fk_categoria eq $categoria->id_categoria}
                                                 <div class="col"> {$producto->nombre} </div>
                                                 <div class="col"> {$producto->precio} </div>
                                                 <div class="col">{$categoria->nombre} </div>
+            
                                             {/if}
                                         </div>
                                     {/foreach}
-                                    <hr class="dropdown-divider">
                                     {if $logueado}
-                                        <div class="col-1 " scope="row"><a class="btn btn-primary"
-                                                href="{$base_url}updateCategoriaMenu/{$categoria->id_categoria}">Update</a>
+                                        <div class="col-1" scope="row">
+                                            <a class="btn btn-primary" href="{$base_url}updateCategoriaMenu/{$categoria->id_categoria}">Update</a>
                                         </div>
-                                        <div class="col-1" scope="row"><a class="btn btn-warning"
-                                                href="{$base_url}eliminarCategoria/{$categoria->id_categoria}">Eliminar</a>
+                                        <div class="col-1" scope="row">
+                                            <a class="btn btn-warning" href="{$base_url}eliminarCategoria/{$categoria->id_categoria}">Eliminar</a>
                                         </div>
-                                        <hr class="dropdown-divider">
                                     {/if}
-
                                 </div>
 
                             </div>
