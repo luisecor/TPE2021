@@ -78,7 +78,7 @@ class CategoriaController{
             header("Location: ".BASE_URL."verCategorias");
         } else {
             $error = 'No es posible eliminar categoría con productos vinculados';
-            $this->categoriaView->showCategoriaS($this->categoriaModel->getCategorias(), $this->authHelper->loggedIn(), $error);
+            $this->categoriaView->showCategoriaS($this->categoriaModel->getCategorias(),$this->productoModel->getProducts(), $this->authHelper->loggedIn(), $error);
         }
     }
 
