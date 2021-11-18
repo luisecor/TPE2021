@@ -29,7 +29,7 @@
                                 <div class="col"> {$producto->nombre} </div>
                                 <div class="col"> {$producto->precio} </div>
                                 <div class="col">{$producto->categoria} </div>
-                                <div class="col"><a class="btn btn-outline-secondary btn-sm" href="{$base_url}verProducto/{{$producto->id_producto}}"> Descripción </a> </div>
+                                <div class="col"><a class="btn btn-outline-secondary btn-sm" href="{$base_url}verProducto/{$producto->id_producto}"> Descripción </a> </div>
                                 {if $logueado}
                                     <div class="col-1 " scope="row">
                                         <a class="btn btn-primary" href="{$base_url}updateProductoMenu/{$producto->id_producto}">Update</a>
