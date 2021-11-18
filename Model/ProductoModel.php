@@ -48,11 +48,11 @@ class ProductoModel{
    }
 
    function searchClave($clave) {
-       echo("ENTRASTE AL SEARCH");
-       $sentencia = $this->db->prepare("SELECT nombre FROM producto WHERE nombre = ? UNION SELECT nombre FROM categoria WHERE nombre = ?");
+       echo("ENTRASTE AL SEARCH MODEL");
+       $sentencia = $this->db->prepare("SELECT nombre, 'Producto' AS tipo FROM producto WHERE nombre = ? UNION SELECT nombre, 'Categoria' AS tipo FROM categoria WHERE nombre = ?");
        $sentencia->execute(array($clave,$clave));
        $serched = $sentencia->fetchAll(PDO::FETCH_OBJ);
-       var_dump($serched);
+       return $serched;
    }
     
 }
