@@ -39,13 +39,11 @@ class ProductoController {
         } else {
             header("Location: ".BASE_URL."home"); 
         }
-
     }
 
     function showProduct($id) {
         $producto = $this->productoModel->getProduct($id);
-        
-        $this->productoView->showProduct($producto);
+        $this->productoView->showProduct($producto, $this->authHelper->getRole());
     }
     
 

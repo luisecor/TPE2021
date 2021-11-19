@@ -27,7 +27,10 @@ class ComentariosModel {
         return $comentario;
     }
 
-    function insertarComentario() {
-        
+    function insertarComentario($review, $id_user, $puntaje, $id_producto) {
+        $sentencia = $this->db->prepare("INSERT INTO productoreview(id_producto, id_user, puntaje, review) VALUES(?, ?, ?, ?)");
+        $sentencia->execute(array($id_producto, $id_user,$puntaje, $review ));
+        return $this->db->lastInsertId();
+
     }
 }

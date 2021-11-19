@@ -1,7 +1,7 @@
 <?php
 
-require_once 'Vuew/ApiView.php';
-//agrego el model 
+require_once 'View/ApiView.php';
+require_once 'Model/ComentariosModel.php';
 
 class ApiController {
 
@@ -36,23 +36,19 @@ class ApiController {
 
     function insertarComentario($params = null) {
         $body = $this->getBody();
-        $id = $this->model->insertarComentario($body->review, $body->id_user);
-        if ($id != 0) {
-            $this->view->response("La tarea se insertó con el id=$id", 200);
+        if(isset($body->review) && isset($body->id_user) && $body->puntaje < 6 && $body->puntaje > 0) {
+            $id = $this->model->insertarComentario($body->review, /*falta id_producto*/ , $body->puntaje, $body->id_user); //por donde viene el id del producto?
+            if ($id != 0) {
+                $this->view->response("La tarea se insertó con el id=$id", 200);
+            } else {
+                $this->view->response("La tarea no se pudo insertar", 500);
+            } 
         } else {
-            $this->view->response("La tarea no se pudo insertar", 500);
+            $this->view->response('No es posible insertar el comentario', ); //que error le mando?
         }
-
     }
 
-
-    
-    //Leer cuerpo del mensaje. Devuelve el body del request
-    //Permite leer la entrada enviada en formato RAW
-    //Similar a $_POST, excepto que:
-    //No es un arreglo, es un string de los datos crudos
-    //No importa que verbo se uso (POST, GET, PUT, ...)
-    protected function getBody(){
+    private function getBody(){
         $bodyString = file_get_contents("php://input");//Convertir el string recibido a JSON
         return json_decode($bodyString); //Devuelve un objeto JSON
     }
