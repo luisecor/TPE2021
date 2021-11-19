@@ -21,7 +21,6 @@ class CategoriaView{
     }
 
     function showCategoriaS($categorias, $prouctos, $logueado, $roleUser, $error = null){
-        var_dump($roleUser);
         $this->smarty->assign('base_url', BASE_URL);
         $this->smarty->assign('categorias', $categorias);
         $this->smarty->assign('productos', $prouctos);
