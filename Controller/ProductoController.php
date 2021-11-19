@@ -19,7 +19,7 @@ class ProductoController {
         $this->productoModel = new ProductoModel();
         $this->categoriaModel = new CategoriaModel();
         $this->authHelper = new AuthHelper();
-        $this->productoView = new ProductoView($this->categoriaModel->getCategorias(), false);      
+        $this->productoView = new ProductoView($this->categoriaModel->getCategorias(), false);  
     }
 
     function eliminarProducto($id){
@@ -44,6 +44,7 @@ class ProductoController {
 
     function showProduct($id) {
         $producto = $this->productoModel->getProduct($id);
+        
         $this->productoView->showProduct($producto);
     }
     
