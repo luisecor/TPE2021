@@ -85,6 +85,18 @@ switch ($params[0]) {
     case 'newUser':
         $usuariosController->newUser();
         break;
+    case 'showUsuarios':
+        $usuariosController->showUsuarios();
+        break;
+    case 'eliminarUsuario':
+        $usuariosController->eliminarUsuario($params[1]);
+        break;
+    case 'showFormUser':
+        $usuariosController->showFormUser($params[1]);
+        break;
+    case 'updateUsuario':
+        $usuariosController->updateUsuario();
+        break;
     default: 
         echo('404 Page not found'); 
         break;

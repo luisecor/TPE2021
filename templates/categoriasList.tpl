@@ -53,7 +53,7 @@
                                             {/if}
                                         </div>
                                     {/foreach}
-                                    {if $logueado && $roleUser eq 1}
+                                    {if $logueado && $roleUser == 1}
                                         <div class="col-1" scope="row">
                                             <a class="btn btn-primary" href="{$base_url}updateCategoriaMenu/{$categoria->id_categoria}">Update</a>
                                         </div>
@@ -67,7 +67,6 @@
                         </div>
                     </div>
                 {/foreach}
-
             </div>
 
             {if $error}

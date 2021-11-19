@@ -3,7 +3,7 @@
        <div class="row justify-content-md-center align-items-center ">
 
            <div class="col-2 ">
-               <div class="col">Powered by </div>
+               <div class="col"> </p> Powered by </p></div>
            </div>
            <div class="col-3">
                <div class="row ">
@@ -11,7 +11,7 @@
                        <ion-icon name="logo-instagram"></ion-icon>
                    </div>
                    <div class="col-1  ">
-                       <p> @anitacelani_
+                       <p> @anitacelani_ </p>
                    </div>
                </div>
                <div class="row">
@@ -19,7 +19,7 @@
                        <ion-icon name="logo-instagram"></ion-icon>
                    </div>
                    <div class="col-1 ">
-                       <p> @luchitocordoba
+                       <p> @luchitocordoba </p> 
                    </div>
                </div </div>
            </div>

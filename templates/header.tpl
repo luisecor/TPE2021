@@ -47,12 +47,17 @@
                     </li>
 
                     {if $logueado}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{BASE_URL}showFormProduct">Agregar Producto</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{BASE_URL}showFormCategoria">Agregar Categoria</a>
-                        </li>
+                        {if $roleUser == 1}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{BASE_URL}showFormProduct">Agregar Producto</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{BASE_URL}showFormCategoria">Agregar Categoria</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{BASE_URL}showUsuarios">Usuarios</a>
+                            </li>
+                        {/if}
                         <li class="nav-item">
                             <a class="nav-link" href="{BASE_URL}logout">Logout</a>
                         </li>

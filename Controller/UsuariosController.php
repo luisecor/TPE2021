@@ -74,4 +74,37 @@ class UsuariosController {
         }
     }
 
+    function showUsuarios() {
+        $this->authHelper->checkLoggedIn();
+        if($this->authHelper->getRole() == 1) {
+            $usuarios = $this->model->getUsaurios();
+            $this->view->showUsuarios($usuarios);
+        } else {
+            header("Location: ".BASE_URL."home"); 
+        }
+    }
+
+    function eliminarUsuario($id) {
+        $this->model->eliminarUsuario($id);
+        header("Location: ".BASE_URL."home"); 
+    }
+
+    function showFormUser($id) {
+        $usuario = $this->model->getUserById($id);
+        if ($usuario) {
+            $this->authHelper->checkLoggedIn();
+            $this->view->showFormUser($usuario);
+        } 
+    }
+
+    function updateUsuario() {
+        if (isset($_REQUEST['email']) && isset($_REQUEST['role']) && $_REQUEST['role'] > 0  && $_REQUEST['role'] < 3) {
+        $this->model->updateUsuario($_REQUEST['id_user'], $_REQUEST['email'], $_REQUEST['role']);
+        $this->showUsuarios();
+        } else {
+            $error = 'Parámetros mal ingresados';
+            $this->view->showFormUser($this->model->getUserById($_REQUEST['id_user']), $error);
+        } 
+    }
+
 }

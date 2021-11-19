@@ -23,30 +23,34 @@ class CategoriaController{
     }
 
     function showHome(){
-        $this->categoriaView->renderHome($this->authHelper->loggedIn());
+        $this->categoriaView->renderHome($this->authHelper->loggedIn(), $this->authHelper->getRole());
     }
 
     function getCategorias(){
         $productos = $this->productoModel->getProducts();
         $categorias = $this->categoriaModel->getCategorias();
-        $this->categoriaView->showCategorias($categorias, $productos, $this->authHelper->getRole(), $this->authHelper->loggedIn());
+        $this->categoriaView->showCategorias($categorias, $productos, $this->authHelper->loggedIn(), $this->authHelper->getRole());
     }
 
     function verPorCategoria($id){
         $productos = $this->productoModel->getProductsByCategoria($id);
-        $this->productoView->showProducts($productos, $this->authHelper->loggedIn());
+        $this->productoView->showProducts($productos, $this->authHelper->getRole(), $this->authHelper->loggedIn());
     }
 
     function showFormCategorias(){
-        $this->categoriaView->showFormCategorias();
-
+        $this->authHelper->checkLoggedIn(); 
+        if($this->authHelper->getRole() == 1) {
+            $this->categoriaView->showFormCategorias();
+        } else {
+            header("Location: ".BASE_URL."home"); 
+        }
     }
 
     function addCategoria (){
-        $this->authHelper->checkLoggedIn();
+        $this->authHelper->checkLoggedIn(); 
         if (isset($_REQUEST['nombre']) && !empty($_REQUEST['nombre'])){
             $this->categoriaModel->addCategoria($_REQUEST['nombre']);
-            header("Location: ".BASE_URL."verCategorias"); //Pusimos por el refresco
+            header("Location: ".BASE_URL."verCategorias"); 
         }
     }
 
