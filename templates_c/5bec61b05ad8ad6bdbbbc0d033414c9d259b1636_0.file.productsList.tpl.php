@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-11-18 15:51:44
+/* Smarty version 3.1.39, created on 2021-11-22 14:23:06
   from 'C:\xampp\htdocs\proyectos\web2-2021\TPE-Bootstrap\ANITA\TPE-master\templates\productsList.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_6196688060c5a6_51150093',
+  'unifunc' => 'content_619b99bad1c277_00757800',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5bec61b05ad8ad6bdbbbc0d033414c9d259b1636' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyectos\\web2-2021\\TPE-Bootstrap\\ANITA\\TPE-master\\templates\\productsList.tpl',
-      1 => 1637247102,
+      1 => 1637587182,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_6196688060c5a6_51150093 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619b99bad1c277_00757800 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 <div class="row justify-content-md-center">
@@ -66,7 +66,7 @@ $_smarty_tpl->tpl_vars['producto']->do_else = false;
                                 <div class="col"><a class="btn btn-outline-secondary btn-sm" href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
 verProducto/<?php echo $_smarty_tpl->tpl_vars['producto']->value->id_producto;?>
 "> Descripción </a> </div>
-                                <?php if ($_smarty_tpl->tpl_vars['logueado']->value) {?>
+                                <?php if ($_smarty_tpl->tpl_vars['logueado']->value && $_smarty_tpl->tpl_vars['roleUser']->value == 1) {?>
                                     <div class="col-1 " scope="row">
                                         <a class="btn btn-primary" href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
 updateProductoMenu/<?php echo $_smarty_tpl->tpl_vars['producto']->value->id_producto;?>

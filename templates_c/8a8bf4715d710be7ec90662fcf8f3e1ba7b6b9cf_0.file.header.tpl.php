@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-11-18 16:32:56
+/* Smarty version 3.1.39, created on 2021-11-22 19:00:28
   from 'C:\xampp\htdocs\proyectos\web2-2021\TPE-Bootstrap\ANITA\TPE-master\templates\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_6196722861cc47_84455083',
+  'unifunc' => 'content_619bdabcd4ae90_02300252',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8a8bf4715d710be7ec90662fcf8f3e1ba7b6b9cf' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyectos\\web2-2021\\TPE-Bootstrap\\ANITA\\TPE-master\\templates\\header.tpl',
-      1 => 1637249573,
+      1 => 1637604023,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6196722861cc47_84455083 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619bdabcd4ae90_02300252 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="en">
 
@@ -34,6 +34,10 @@ function content_6196722861cc47_84455083 (Smarty_Internal_Template $_smarty_tpl)
         integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <title>TecnoShop!</title>
+    <!-- development version, includes helpful console warnings -->
+    <?php echo '<script'; ?>
+ src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"><?php echo '</script'; ?>
+>
 </head>
 
 <body>
@@ -83,14 +87,20 @@ verCategorias"> Ver Categrias </a></li>
                     </li>
 
                     <?php if ($_smarty_tpl->tpl_vars['logueado']->value) {?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo BASE_URL;?>
+                        <?php if ($_smarty_tpl->tpl_vars['roleUser']->value == 1) {?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo BASE_URL;?>
 showFormProduct">Agregar Producto</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo BASE_URL;?>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo BASE_URL;?>
 showFormCategoria">Agregar Categoria</a>
-                        </li>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo BASE_URL;?>
+showUsuarios">Usuarios</a>
+                            </li>
+                        <?php }?>
                         <li class="nav-item">
                             <a class="nav-link" href="<?php echo BASE_URL;?>
 logout">Logout</a>
