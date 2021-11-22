@@ -9,7 +9,10 @@ class ComentariosModel {
     }
 
     function getReviews($id_producto) {
-        $sentencia = $this->db->prepare("SELECT * FROM productoreview WHERE id_producto = ?"); 
+        
+        $sentencia = $this->db->prepare("SELECT productoreview.id_review, productoreview.id_producto, productoreview.id_user, productoreview.review, productoreview.puntaje, usuario.email as user
+                                        FROM productoreview
+                                        INNER JOIN usuario ON productoreview.id_user = usuario.id_user WHERE id_producto = ?"); 
         $sentencia->execute(array($id_producto));
         $comentarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $comentarios;

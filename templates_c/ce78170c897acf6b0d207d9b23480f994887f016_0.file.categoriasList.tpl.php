@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-11-18 18:40:28
+/* Smarty version 3.1.39, created on 2021-11-23 00:10:48
   from 'C:\xampp\htdocs\proyectos\web2-2021\TPE-Bootstrap\ANITA\TPE-master\templates\categoriasList.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_6196900cb9aef5_05179370',
+  'unifunc' => 'content_619c2378bcf053_20407361',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ce78170c897acf6b0d207d9b23480f994887f016' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyectos\\web2-2021\\TPE-Bootstrap\\ANITA\\TPE-master\\templates\\categoriasList.tpl',
-      1 => 1637256605,
+      1 => 1637587182,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./footer.tpl' => 1,
   ),
 ),false)) {
-function content_6196900cb9aef5_05179370 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619c2378bcf053_20407361 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:./header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -120,7 +120,6 @@ eliminarCategoria/<?php echo $_smarty_tpl->tpl_vars['categoria']->value->id_cate
                 <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-
             </div>
 
             <?php if ($_smarty_tpl->tpl_vars['error']->value) {?>

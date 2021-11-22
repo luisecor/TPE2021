@@ -29,9 +29,10 @@ class ProductoView {
         $this->smarty->display('./templates/forms/formProductoUpdate.tpl');
      }
  
-     function showProduct($producto, $roleUser){
+     function showProduct($producto, $roleUser, $logueado){
         $this->smarty->assign("producto", $producto);
-        $this->smarty->assign('userRole', $roleUser);
+        $this->smarty->assign('roleUser', $roleUser);
+        $this->smarty->assign('logueado', $logueado);       
         $this->smarty->display('./templates/product.tpl');
      }
 

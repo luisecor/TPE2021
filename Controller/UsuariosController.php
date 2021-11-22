@@ -47,9 +47,11 @@ class UsuariosController {
     }
 
     function logout(){
-        session_start();
-        session_destroy();
+        if ($this->authHelper->loggedIn()){
+            session_destroy();
+        }
         $this->view->showLogin("Deslogueado");
+        
     }
 
     function formNewUser(){

@@ -12,26 +12,18 @@
     </div>
 </div>
 
-{if $userRole eq 0 }
 
-    <h5> Usuario no logueado --> Publico
-
-{/if}
-
-{if $userRole eq 1 }
-
-    <h5> Administrador
-
-{/if}
-
-{if $userRole > 1 }
-
-    <h5> Usuarios Normales
-
-{/if}
-        <div class="row justify-content-md-center container ">
+   <div class="row justify-content-md-center container ">
             <div class="col-11">
                 <div class="container p-md-2 m-md-3 bg-light">
+
+     
+
+                   {include file="Vue/comentarios.tpl"}
+            {if $roleUser eq 0 }
+                    <div> <h5> Para dejar un comentario es necesario estar logeado</h5> </div>
+            {/if}
+            {if $roleUser > 0 }
                     <form action="{$base_url}sendReview" method="post">
                         <div class="form-floating m-md-3">
                             <textarea class="form-control" style="height: 100px"></textarea>
@@ -47,12 +39,9 @@
                                 <button class="btn btn-outline-secondary bg-dark" type="submit">Send</button>
                             </div>
                         </div>
-                        {if $userRole == 1} <!--//esto se hace con vue.js
-                            <a class="btn btn-warning" href="{$base_url}eliminarComentario/{$comentario->id_review}">Eliminar</a>
-                            -->
-                        {/if}
-                    </form>
-                   {include file="Vue/comentarios.tpl"} 
+                    </form>               
+
+            {/if} 
                   
                 </div>   
             </div>

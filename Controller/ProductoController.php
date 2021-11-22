@@ -19,12 +19,16 @@ class ProductoController {
         $this->productoModel = new ProductoModel();
         $this->categoriaModel = new CategoriaModel();
         $this->authHelper = new AuthHelper();
-        $this->productoView = new ProductoView($this->categoriaModel->getCategorias(), false);  
+        $this->productoView = new ProductoView($this->categoriaModel->getCategorias(), $this->authHelper->loggedIn());  
     }
 
     function eliminarProducto($id){
-        $this->productoModel->eliminarProductoDeDB($id);
-        header("Location: ".BASE_URL."verProductos"); 
+        //Elimina el producto solo si esta loggeado y si el rol es administrador
+        if ($this->authHelper->loggedIn() && $this->authHelper->getRole() == 1){
+            $this->productoModel->eliminarProductoDeDB($id);
+            header("Location: ".BASE_URL."verProductos"); 
+        }
+        
     }
 
     function getProducts(){
@@ -33,6 +37,7 @@ class ProductoController {
     }
 
     function showFormProductos(){
+        //Se pueden agregar nuevos productos solo si estas loggeado y si el rol es administrador
         $this->authHelper->checkLoggedIn();
         if($this->authHelper->getRole() == 1) {
             $this->productoView->showFormProductos($this->categoriaModel->getCategorias());
@@ -43,7 +48,7 @@ class ProductoController {
 
     function showProduct($id) {
         $producto = $this->productoModel->getProduct($id);
-        $this->productoView->showProduct($producto, $this->authHelper->getRole());
+        $this->productoView->showProduct($producto, $this->authHelper->getRole(),$this->authHelper->loggedIn() );
     }
     
 

@@ -1,20 +1,18 @@
 {literal}
-        
-   <h3 class="m-md-3">Review</h3>
-
-                    <div id="comentariosApp"class="card text-white bg-dark mb-3" style="max-width: 18rem">
-                        
+<div id="comentariosApp">
+    <h3  class="m-md-3">Comentarios</h3>
                         <div v-for="comentario in comentarios">
-
-                            <div class="card-header border-light">{{comentario.id_user}}</div>
-                            <div class="card-body">
-                                <p class="card-text"> {{comentario.review }} </p>
+                        <div class="card text-white  bg-dark mb-3" >
+                                <div class="card-header">{{comentario.user}}</div>
+                                <div class="card-body">
+                                    <p class="card-text text-center">{{comentario.review }}</p>
+                                    <h5 class="card-title text-end">Puntuacion : {{comentario.puntaje }} </h5>
+                                </div>
                             </div>
-
-                        
                         </div>
-                       
-                    </div>
+
+</div>
+    
 
                 
 {/literal}
