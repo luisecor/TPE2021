@@ -34,5 +34,14 @@ class AuthHelper{
         return $this->getRole() > 0;
     }
 
+    function getUserID(){
+        if(session_status() === PHP_SESSION_NONE) session_start();
+        if(isset($_SESSION['id_user'])){
+            return  $_SESSION['id_user'];
+        } else {
+            return null;
+        }
+    }
+
 
 }

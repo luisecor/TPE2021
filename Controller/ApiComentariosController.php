@@ -46,19 +46,20 @@ class ApiComentariosController {
         }
     }
 
-    /*function insertarComentario($params = null) {
+    function insertarComentario($params = null) {
         $body = $this->getBody();
-        if(isset($body->review) && isset($body->id_user) && $body->puntaje < 6 && $body->puntaje > 0) {
-            $id = $this->model->insertarComentario($body->review, /*falta id_producto*//* , $body->puntaje, $body->id_user); //por donde viene el id del producto?
-            if ($id != 0) {
-                $this->view->response("La tarea se insertó con el id=$id", 200);
-            } else {
-                $this->view->response("La tarea no se pudo insertar", 500);
-            } 
-        } else {
-            $this->view->response('No es posible insertar el comentario', ); //que error le mando?
-        }
-    }*/
+        
+        // if(isset($body->review) && isset($body->id_user) && $body->puntaje < 6 && $body->puntaje > 0) {
+        //     $id = $this->model->insertarComentario($body->review, /*falta id_producto*/ , $body->puntaje, $body->id_user);
+        //     if ($id != 0) {
+        //         $this->view->response("La tarea se insertó con el id=$id", 200);
+        //     } else {
+        //         $this->view->response("La tarea no se pudo insertar", 500);
+        //     } 
+        // } else {
+        //     $this->view->response('No es posible insertar el comentario', ); //que error le mando?
+        // }
+    }
 
     private function getBody(){
         $bodyString = file_get_contents("php://input");//Convertir el string recibido a JSON

@@ -48,7 +48,7 @@ class ProductoController {
 
     function showProduct($id) {
         $producto = $this->productoModel->getProduct($id);
-        $this->productoView->showProduct($producto, $this->authHelper->getRole(),$this->authHelper->loggedIn() );
+        $this->productoView->showProduct($producto, $this->authHelper->getRole(),$this->authHelper->loggedIn(),$this->authHelper->getUserID() );
     }
     
 

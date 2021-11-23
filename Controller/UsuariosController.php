@@ -36,9 +36,10 @@ class UsuariosController {
             $user = $this->model->getUser($email);
 
             if($user && password_verify($password, $user->password)) {
-                session_start();
+                if(session_status() === PHP_SESSION_NONE) session_start();  
                 $_SESSION['email'] = $email;
                 $_SESSION['roleUser'] = $user->roleUser;
+                $_SESSION['id_user'] = $user->id_user;
                 $this->view->showHome();
             } else {
                 $this->view->showLogin("Acceso denegado");
