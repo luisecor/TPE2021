@@ -20,7 +20,7 @@ class ComentariosModel {
 
     function eliminarComentario($id_comentario) {
         $sentencia = $this->db->prepare("DELETE FROM productoreview WHERE id_review = ?");
-        $response = $sentencia->execute(array($id_comentario));
+        $sentencia->execute(array($id_comentario));
     }
 
     function getComentario($id_comentario) {

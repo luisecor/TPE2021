@@ -16,6 +16,7 @@
    <div class="row justify-content-md-center container ">
             <div class="col-11">
                 <div class="container p-md-2 m-md-3 bg-light">
+                <div id="roleUser" data-roleUser = "{$roleUser}" hidden></div>
 
                  {if $roleUser > 0 }
                     <form id="form" action="{$base_url}sendReview" method="post">
