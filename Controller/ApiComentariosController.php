@@ -16,7 +16,14 @@ class ApiComentariosController {
     function getComentarios($params = null) {
         //Trae comentarios de un producto especifico
         $idProducto = $params[":ID"];
-        $reviews = $this->model->getReviews($idProducto);
+
+        if (isset($_GET['filtro'])){
+            $reviews = $this->model->getReviews($idProducto,$_GET['filtro']);
+        } else {
+            $reviews = $this->model->getReviews($idProducto);
+        }
+
+        
         if ($reviews) {
             $this->view->response($reviews, 200);
         } else {
@@ -51,9 +58,9 @@ class ApiComentariosController {
         if(isset($body->review) && isset($body->id_user) && $body->puntaje < 6 && $body->puntaje > 0) {
             $id = $this->model->insertarComentario($body->review, $body->id_producto , $body->puntaje, $body->id_user);
             if ($id != 0) {
-                $this->view->response("La tarea se insertó con el id=$id", 200);
+                $this->view->response("El comentario se insertó con el id=$id", 200);
             } else {
-                $this->view->response("La tarea no se pudo insertar", 500);
+                $this->view->response("El comentario no se pudo insertar", 500);
             } 
         } else {
             $this->view->response('No es posible insertar el comentario',500); //que error le mando?

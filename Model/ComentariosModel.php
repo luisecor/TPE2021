@@ -8,17 +8,27 @@ class ComentariosModel {
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_tpe;charset=utf8', 'root', '');
     }
 
-    function getReviews($id_producto) {
+    function getReviews($id_producto, $filtro=null) {
+
+        $orderBy = [
+            "id" => "ORDER BY id_review",
+            "antiq" => "ORDER BY id_review DESC",
+            "puntaje" => "ORDER BY puntaje DESC"
+        ];
+        if (isset($orderBy[$filtro]))
+            $order = $orderBy[$filtro];
+            else
+            $order ="";
         
         $sentencia = $this->db->prepare("SELECT productoreview.id_review, productoreview.id_producto, productoreview.id_user, productoreview.review, productoreview.puntaje, usuario.email as user
                                         FROM productoreview
-                                        INNER JOIN usuario ON productoreview.id_user = usuario.id_user WHERE id_producto = ?"); 
+                                        INNER JOIN usuario ON productoreview.id_user = usuario.id_user WHERE id_producto = ? $order"); 
         $sentencia->execute(array($id_producto));
         $comentarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $comentarios;
     }
 
-    function eliminarComentario($id_comentario) {
+    function eliminarComentario($id_comentario){ 
         $sentencia = $this->db->prepare("DELETE FROM productoreview WHERE id_review = ?");
         $sentencia->execute(array($id_comentario));
     }

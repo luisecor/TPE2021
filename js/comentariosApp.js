@@ -5,16 +5,12 @@ const API_URL_DELETE = document.location.href.split("verProducto")[0]+ "api/revi
 const URL_SPLITED = document.location.href.split("verProducto")[0]+API_URL;
 const ID_PRODUCTO = document.getElementById('producto').getAttribute('data-producto');
 const ROLEUSER = document.querySelector("#roleUser").getAttribute("data-roleUser");
+document.querySelectorAll("#filtros")[0].setAttribute("hidden", true); // Haya o no haya comentarios oculto los filtros
 
 
 if (ROLEUSER >0 ){
     let form = document.querySelector('#form');
     form.addEventListener('submit',addComment);
-}
-
-
-function eliminar (){
-    console.log("HOLA");
 }
 
 
@@ -28,9 +24,14 @@ let comentariosApp = new Vue({
 })
 
 
-async function getComentarios(){
+async function getComentarios(filtro = null){
     try {
-        let response = await fetch(`${URL_SPLITED}/${ID_PRODUCTO}`);
+        let response;
+        if (!filtro){
+            response = await fetch(`${URL_SPLITED}/${ID_PRODUCTO}`);
+        } else {
+            response = await fetch(`${URL_SPLITED}/${ID_PRODUCTO}?filtro=${filtro}`);
+        }
         if (response.ok){
             if (response.status == 200){
                 let comentarios = await response.json();
@@ -76,8 +77,11 @@ async function addComment(e) {
             "body": JSON.stringify(newComment),
         })
         if (res.ok) {
-            console.log("Se ha agregado con exito");
-            window.location.reload();
+            if (res.status == 200 ){
+                console.log("Se ha agregado con exito");
+                window.location.reload();
+            }
+            
         }
     } catch (error) {
         console.log(error);
@@ -121,6 +125,18 @@ document.addEventListener('DOMContentLoaded', async() =>{
         //     console.log(boton);    
         // })});
     }  
+
+    if (document.querySelectorAll(".comentario").length > 0){
+        document.querySelectorAll("#filtros")[0].toggleAttribute("hidden")
+        //Si tengo comentarios muestro los filtos
+        let filtros = document.querySelectorAll("#filtros button");
+        for (const filtro of filtros){
+            filtro.addEventListener("click", async ()=>{
+                console.log(filtro.id.split("-")[1]);
+                await getComentarios( filtro.id.split("-")[1]) 
+            })
+        }
+    }
     
     })
 

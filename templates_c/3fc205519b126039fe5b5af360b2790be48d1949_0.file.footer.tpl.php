@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-11-22 19:00:28
+/* Smarty version 3.1.39, created on 2021-11-23 19:24:35
   from 'C:\xampp\htdocs\proyectos\web2-2021\TPE-Bootstrap\ANITA\TPE-master\templates\footer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_619bdabcda6d12_68877669',
+  'unifunc' => 'content_619d31e35c8615_83541169',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3fc205519b126039fe5b5af360b2790be48d1949' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyectos\\web2-2021\\TPE-Bootstrap\\ANITA\\TPE-master\\templates\\footer.tpl',
-      1 => 1637604001,
+      1 => 1637691872,
       2 => 'file',
     ),
   ),
@@ -20,10 +20,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_619bdabcda6d12_68877669 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619d31e35c8615_83541169 (Smarty_Internal_Template $_smarty_tpl) {
 ?>                </div>
 
-                <footer class="row text-center fixed-bottom">
+                <footer class="row text-center static-bottom">
                     <div class="row justify-content-md-center align-items-center"> 
                         <div class="col-2 ">
                             <div class="col"> </p> Powered by </p> </div>
