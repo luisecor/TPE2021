@@ -2,13 +2,16 @@
 
 const API_URL = "api/reviews/product";
 const ID_PRODUCTO = document.getElementById('producto').getAttribute('data-producto');
-const ID_USER = document.getElementById('id_user').getAttribute('data-id_user');
+
+let form = document.querySelector('#form');
+form.addEventListener('submit',addComment);
+
 
 
 let comentariosApp = new Vue({
     el: "#comentariosApp",
     data : {
-        comentarios: []
+        comentarios: [],
     }
     
 })
@@ -26,13 +29,19 @@ async function getComentarios(){
     
 }
 
-async function addComment() {
+async function addComment(e) {
+
+    e.preventDefault();
+    
+    let ID_USER = document.getElementById('id_user').getAttribute('data-id_user');
     let newComment = {
         puntaje: "",
         review:"",
         id_user: ID_USER,
         id_producto: ID_PRODUCTO 
     }
+
+    
 
     try {
         let res = await fetch(`${API_URL}`, {

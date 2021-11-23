@@ -18,7 +18,7 @@
                 <div class="container p-md-2 m-md-3 bg-light">
 
                  {if $roleUser > 0 }
-                    <form action="{$base_url}sendReview" method="post">
+                    <form id="form" action="{$base_url}sendReview" method="post">
                         <div class="form-floating m-md-3">
                             <textarea class="form-control" style="height: 100px"></textarea>
                             <label>Comenta aquí </label>
@@ -30,7 +30,7 @@
                                     <option value="4">4</option>
                                     <option value="5">5</option>
                                 </select>
-                                <button  class="btn btn-outline-secondary bg-dark" type="submit">Send</button>
+                                <button  class="btn btn-outline-secondary bg-dark" type="submit">Comentar</button>
                             </div>
                         </div>
                     </form>               
