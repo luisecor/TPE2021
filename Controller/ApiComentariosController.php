@@ -30,7 +30,7 @@ class ApiComentariosController {
         if ($reviews) {
             $this->view->response($reviews, 200);
         } else {
-            $this->view->response("No existe comentario con el id=$idProducto", 200); 
+            $this->view->response("No existe comentario con el id=$idComentario", 200); 
         }
 
     }
@@ -47,18 +47,17 @@ class ApiComentariosController {
     }
 
     function insertarComentario($params = null) {
-        $body = $this->getBody();
-        
-        // if(isset($body->review) && isset($body->id_user) && $body->puntaje < 6 && $body->puntaje > 0) {
-        //     $id = $this->model->insertarComentario($body->review, /*falta id_producto*/ , $body->puntaje, $body->id_user);
-        //     if ($id != 0) {
-        //         $this->view->response("La tarea se insertó con el id=$id", 200);
-        //     } else {
-        //         $this->view->response("La tarea no se pudo insertar", 500);
-        //     } 
-        // } else {
-        //     $this->view->response('No es posible insertar el comentario', ); //que error le mando?
-        // }
+        $body = $this->getBody();        
+        if(isset($body->review) && isset($body->id_user) && $body->puntaje < 6 && $body->puntaje > 0) {
+            $id = $this->model->insertarComentario($body->review, $body->id_producto , $body->puntaje, $body->id_user);
+            if ($id != 0) {
+                $this->view->response("La tarea se insertó con el id=$id", 200);
+            } else {
+                $this->view->response("La tarea no se pudo insertar", 500);
+            } 
+        } else {
+            $this->view->response('No es posible insertar el comentario',500); //que error le mando?
+        }
     }
 
     private function getBody(){
