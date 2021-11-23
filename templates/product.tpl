@@ -21,7 +21,7 @@
                  {if $roleUser > 0 }
                     <form id="form" action="{$base_url}sendReview" method="post">
                         <div class="form-floating m-md-3">
-                            <textarea id="review" class="form-control" style="height: 100px"></textarea>
+                            <textarea id="review" required class="form-control" style="height: 100px"></textarea>
                             <label>Comenta aquí </label>
                             <div id="id_user" data-id_user="{$id_user}" class="input-group mt-2">
                                 <select id="puntaje" class="form-select" id="puntaje" required>

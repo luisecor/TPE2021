@@ -32,10 +32,14 @@ async function getComentarios(){
     try {
         let response = await fetch(`${URL_SPLITED}/${ID_PRODUCTO}`);
         if (response.ok){
-            let comentarios = await response.json();
-            console.log(comentarios);
             if (response.status == 200){
+                let comentarios = await response.json();
+                console.log(comentarios);
                 comentariosApp.comentarios = comentarios;
+            }   else {
+                if (response.status == 204){
+                    comentariosApp.comentarios = "";
+                }
             }
             
         }
