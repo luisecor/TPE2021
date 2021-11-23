@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 13, 2021 at 06:25 PM
+-- Generation Time: Nov 23, 2021 at 07:07 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.7
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_tpe`
 --
-CREATE DATABASE IF NOT EXISTS `db_tpe` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `db_tpe`;
 
 -- --------------------------------------------------------
 
@@ -29,20 +27,18 @@ USE `db_tpe`;
 -- Table structure for table `categoria`
 --
 
-CREATE TABLE IF NOT EXISTS `categoria` (
-  `id_categoria` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(100) NOT NULL,
-  PRIMARY KEY (`id_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `categoria` (
+  `id_categoria` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `categoria`
 --
 
 INSERT INTO `categoria` (`id_categoria`, `nombre`) VALUES
-(1, 'Perisfericos'),
+(1, 'OTRA CATEGORI'),
 (2, 'Hardware'),
-(3, 'Software'),
 (4, 'Video Juegos'),
 (11, 'Soporte');
 
@@ -52,29 +48,47 @@ INSERT INTO `categoria` (`id_categoria`, `nombre`) VALUES
 -- Table structure for table `producto`
 --
 
-CREATE TABLE IF NOT EXISTS `producto` (
-  `id_producto` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `producto` (
+  `id_producto` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `precio` double NOT NULL,
   `fk_categoria` int(11) NOT NULL,
-  `descripcion` varchar(250) NOT NULL,
-  PRIMARY KEY (`id_producto`),
-  UNIQUE KEY `unique_producto_categoria` (`id_producto`,`fk_categoria`),
-  KEY `fk_ProductoCategoria` (`fk_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
+  `descripcion` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `producto`
 --
 
 INSERT INTO `producto` (`id_producto`, `nombre`, `precio`, `fk_categoria`, `descripcion`) VALUES
-(2, 'Teclado RGB', 100, 2, 'DESCRRIPCION'),
+(2, 'CAMBIAZO', 100, 2, 'DESCRRIPCION'),
 (3, 'Mouse', 100, 1, 'Mouse Gamer'),
 (4, 'Mother ASUS Z590-P', 500, 2, 'Motherboard marca Asus'),
 (5, 'Monitor LG-24\"', 500, 1, 'Monitro 24\" marca LG'),
 (6, 'Diablo II', 1500, 4, 'Ubisoft - Diablo II'),
-(7, 'Assasing Creeds', 100, 2, 'Juego de PPRMGORO'),
+(7, 'Assasing Creeds', 100, 4, 'Juego de PPRMGORO'),
 (21, 'Instalacion de Software', 10, 11, 'Instalación de cualquier software - precio según presupuesto');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `productoreview`
+--
+
+CREATE TABLE `productoreview` (
+  `id_review` int(11) NOT NULL,
+  `id_producto` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `review` varchar(1000) NOT NULL,
+  `puntaje` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `productoreview`
+--
+
+INSERT INTO `productoreview` (`id_review`, `id_producto`, `id_user`, `review`, `puntaje`) VALUES
+(17, 2, 1, 'asdadasd', 1);
 
 -- --------------------------------------------------------
 
@@ -82,19 +96,80 @@ INSERT INTO `producto` (`id_producto`, `nombre`, `precio`, `fk_categoria`, `desc
 -- Table structure for table `usuario`
 --
 
-CREATE TABLE IF NOT EXISTS `usuario` (
-  `id_user` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `usuario` (
+  `id_user` int(11) NOT NULL,
   `email` varchar(200) NOT NULL,
   `password` varchar(500) NOT NULL,
-  PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+  `roleUser` int(1) NOT NULL DEFAULT 2
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `usuario`
 --
 
-INSERT INTO `usuario` (`id_user`, `email`, `password`) VALUES
-(1, 'demo@gmail.com', '$2y$10$VWBNGh654BUNh/D51jyGYeJuiSF5tAiVSKjJVOiULYyAcA1NjsWEG');
+INSERT INTO `usuario` (`id_user`, `email`, `password`, `roleUser`) VALUES
+(1, 'demo@gmail.com', '$2y$10$VWBNGh654BUNh/D51jyGYeJuiSF5tAiVSKjJVOiULYyAcA1NjsWEG', 1),
+(9, 'usuario@gmail.com', '$2y$10$eLpJQh4/jqabqKIfwSngWeUICY/z1NivAwbY1p0oj8pZLFFsegswa', 2);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `categoria`
+--
+ALTER TABLE `categoria`
+  ADD PRIMARY KEY (`id_categoria`);
+
+--
+-- Indexes for table `producto`
+--
+ALTER TABLE `producto`
+  ADD PRIMARY KEY (`id_producto`),
+  ADD UNIQUE KEY `unique_producto_categoria` (`id_producto`,`fk_categoria`),
+  ADD KEY `fk_ProductoCategoria` (`fk_categoria`);
+
+--
+-- Indexes for table `productoreview`
+--
+ALTER TABLE `productoreview`
+  ADD PRIMARY KEY (`id_review`),
+  ADD KEY `productoReview_producto_id_producto` (`id_producto`),
+  ADD KEY `productoreview_usuario_id_user` (`id_user`);
+
+--
+-- Indexes for table `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id_user`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `categoria`
+--
+ALTER TABLE `categoria`
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `producto`
+--
+ALTER TABLE `producto`
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `productoreview`
+--
+ALTER TABLE `productoreview`
+  MODIFY `id_review` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT for table `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
@@ -105,6 +180,13 @@ INSERT INTO `usuario` (`id_user`, `email`, `password`) VALUES
 --
 ALTER TABLE `producto`
   ADD CONSTRAINT `fk_ProductoCategoria` FOREIGN KEY (`fk_categoria`) REFERENCES `categoria` (`id_categoria`);
+
+--
+-- Constraints for table `productoreview`
+--
+ALTER TABLE `productoreview`
+  ADD CONSTRAINT `productoReview_producto_id_producto` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`),
+  ADD CONSTRAINT `productoreview_usuario_id_user` FOREIGN KEY (`id_user`) REFERENCES `usuario` (`id_user`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
