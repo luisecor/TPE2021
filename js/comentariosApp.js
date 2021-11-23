@@ -1,6 +1,7 @@
 "use strict"
 
 const API_URL = "api/reviews/product";
+const URL_SPLITED = document.location.href.split("verProducto")[0]+API_URL;
 const ID_PRODUCTO = document.getElementById('producto').getAttribute('data-producto');
 
 let form = document.querySelector('#form');
@@ -19,9 +20,16 @@ let comentariosApp = new Vue({
 
 async function getComentarios(){
     try {
-        let response = await fetch("http://localhost/proyectos/web2-2021/TPE-Bootstrap/ANITA/TPE-master/api/reviews/product/7");
-        let comentarios = await response.json();
-        comentariosApp.comentarios = comentarios;
+        let response = await fetch(`${URL_SPLITED}/${ID_PRODUCTO}`);
+        if (response.ok){
+            let comentarios = await response.json();
+            console.log(comentarios);
+            if ( response.status == 200){
+                comentariosApp.comentarios = comentarios;
+            }
+            
+        }
+       
 
     } catch (e){
         console.log(e);
@@ -52,7 +60,7 @@ async function addComment(e) {
     
 
     try {
-        let res = await fetch(`http://localhost/proyectos/web2-2021/TPE-Bootstrap/ANITA/TPE-master/api/reviews/product/7`, {
+        let res = await fetch(`${URL_SPLITED}/${ID_PRODUCTO}`, {
             "method": "POST",
             "headers": { "Content-type": "application/json" },
             "body": JSON.stringify(newComment),

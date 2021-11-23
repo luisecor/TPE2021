@@ -20,7 +20,7 @@ class ApiComentariosController {
         if ($reviews) {
             $this->view->response($reviews, 200);
         } else {
-            $this->view->response("No hay comentarios para el producto con el id=$idProducto", 200); 
+            $this->view->response("No hay comentarios para el producto con el id=$idProducto", 204); 
         }
     }
 
@@ -30,7 +30,7 @@ class ApiComentariosController {
         if ($reviews) {
             $this->view->response($reviews, 200);
         } else {
-            $this->view->response("No existe comentario con el id=$idComentario", 200); 
+            $this->view->response("No existe comentario con el id=$idComentario", 204); 
         }
 
     }
