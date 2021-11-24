@@ -15,6 +15,11 @@
                     <div class="p-md-1">
                         <input type="submit" class="btn btn-primary" value="Entrar">
                     </div>
+                    {if $error}
+                        <div class="container alert alert-danger" role="alert">
+                            {$error}
+                        </div>
+                    {/if}
                 </div>
             </form>       
         </div>
