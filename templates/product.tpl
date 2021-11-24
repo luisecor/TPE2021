@@ -13,7 +13,7 @@
                     </div>
                     </div>
                     <div class="col-4">
-                    {if isset($producto->imagen)}
+                    {if $producto->imagen}
                         <img src="../{$producto->imagen}" class="rounded" style="max-width: 200px;">
                     {/if} 
                     </div>
