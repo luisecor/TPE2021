@@ -23,21 +23,40 @@ let comentariosApp = new Vue({
     
 })
 
+async function getComentariosXFiltro(filtro = null){
+    if (filtro && filtro>=0 && filtro <=5){
+        //console.log(filtro);
+        await getComentarios(null,null,filtro);
 
-async function getComentarios(filtro = null, order = null){
-    console.log(order);
+    } else {
+        await getComentarios();
+    }
+}
+
+async function getComentarios(filtro = null, order = null, condicion = null){
+    //console.log(order);
+    //console.log("getComentarios" + condicion);
     try {
         let response;
         if (!filtro){
            // console.log("Sin filtro - Sin ORDEN "+`${URL_SPLITED}/${ID_PRODUCTO}`);
             response = await fetch(`${URL_SPLITED}/${ID_PRODUCTO}`);
+            if (condicion){
+                response = await fetch(`${URL_SPLITED}/${ID_PRODUCTO}?where=${condicion}`);
+            }
 
         } else {
             if (!order){
+                if (condicion){
+                    response = await fetch(`${URL_SPLITED}/${ID_PRODUCTO}?where=${condicion}&filtro=${filtro}`);
+                } else
                // console.log("Ccon filtro y sin ORDEN "+`${URL_SPLITED}/${ID_PRODUCTO}`);
                 response = await fetch(`${URL_SPLITED}/${ID_PRODUCTO}?filtro=${filtro}`);
             }
                 else{
+                    if (condicion){
+                        response = await fetch(`${URL_SPLITED}/${ID_PRODUCTO}?where=${condicion}&filtro=${filtro}&order=${order}`);
+                    }
                // console.log("CON filtro con ORDEN "+`${URL_SPLITED}/${ID_PRODUCTO}?filtro=${filtro}&order=${order}`);
                 response = await fetch(`${URL_SPLITED}/${ID_PRODUCTO}?filtro=${filtro}&order=${order}`);
                 }
@@ -45,7 +64,7 @@ async function getComentarios(filtro = null, order = null){
         if (response.ok){
             if (response.status == 200){
                 let comentarios = await response.json();
-                console.log(comentarios);
+               // console.log(comentarios);
                 comentariosApp.comentarios = comentarios;
             }   else {
                 if (response.status == 204){
@@ -127,20 +146,30 @@ document.addEventListener('DOMContentLoaded', async() =>{
     if (document.querySelectorAll(".comentario").length > 0){
         document.querySelectorAll("#filtros")[0].toggleAttribute("hidden")
         //Si tengo comentarios muestro los filtos
-        let filtros = document.querySelectorAll("#filtros button");
-        for (const filtro of filtros){
-            filtro.addEventListener("click", async ()=>{
+        let ordenadores = document.querySelectorAll("#filtros .orden");
+        for (const ordenador of ordenadores){
+            ordenador.addEventListener("click", async ()=>{
                 let order = "desc";
-                if (filtro.hasAttribute("asc")){
-                    filtro.toggleAttribute("asc");
+                if (ordenador.hasAttribute("asc")){
+                    ordenador.toggleAttribute("asc");
                      order = "asc";
                 } else {
-                    filtro.toggleAttribute("asc");
+                    ordenador.toggleAttribute("asc");
                 }
-                console.log(filtro.id.split("-")[1] + " order by " +order);
-                await getComentarios( filtro.id.split("-")[1], order); 
+               // console.log(filtro.id.split("-")[1] + " order by " +order);
+                await getComentarios( ordenador.id.split("-")[1], order); 
             })
         }
+
+        let filtros = document.querySelectorAll("#filtros .filtro");
+        for (let filtro of filtros){
+            filtro.addEventListener("click", async ()=> {
+                const identidicador = filtro.id.split("-")[2];
+                //console.log(identidicador);
+                await getComentariosXFiltro(identidicador);
+            })
+        }
+
     }
     
     })
