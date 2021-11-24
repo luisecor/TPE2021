@@ -4,8 +4,8 @@
      
              <div id="filtros" class="btn-group me-2" role="group" aria-label="First group">
                 <span> Filtrar comentarios por:   </span>
-                <button type="button" id="filtro-antiq" class="btn btn-outline-secondary">Antigüedad</button>
-                <button type="button" id="filtro-puntaje" class="btn btn-outline-secondary">Puntaje</button>
+                <button type="button" id="filtro-antiq" class="btn asc btn-outline-secondary">Antigüedad</button>
+                <button type="button" id="filtro-puntaje" class="btn asc btn-outline-secondary">Puntaje</button>
             </div>
     <div id="comentariosApp">
                         <div v-for="comentario in comentarios">

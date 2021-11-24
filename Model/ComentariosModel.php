@@ -8,21 +8,30 @@ class ComentariosModel {
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_tpe;charset=utf8', 'root', '');
     }
 
-    function getReviews($id_producto, $filtro=null) {
+    function getReviews($id_producto, $filtro=null, $order = null) {
 
         $orderBy = [
-            "id" => "ORDER BY id_review",
-            "antiq" => "ORDER BY id_review DESC",
-            "puntaje" => "ORDER BY puntaje DESC"
+            "asc" => " ASC",
+            "desc" => " DESC"
         ];
-        if (isset($orderBy[$filtro]))
-            $order = $orderBy[$filtro];
+        if (isset($orderBy[$order]))
+            $order=$orderBy[$order];
             else
-            $order ="";
+            $order = " ASC";
+
+        $filterBy = [
+            "id" => "ORDER BY id_review",
+            "antiq" => "ORDER BY id_review",
+            "puntaje" => "ORDER BY puntaje"
+        ];
+        if (isset($filterBy[$filtro]))
+            $filter = $filterBy[$filtro] . $order;
+            else
+            $filter ="";
         
         $sentencia = $this->db->prepare("SELECT productoreview.id_review, productoreview.id_producto, productoreview.id_user, productoreview.review, productoreview.puntaje, usuario.email as user
                                         FROM productoreview
-                                        INNER JOIN usuario ON productoreview.id_user = usuario.id_user WHERE id_producto = ? $order"); 
+                                        INNER JOIN usuario ON productoreview.id_user = usuario.id_user WHERE id_producto = ? $filter"); 
         $sentencia->execute(array($id_producto));
         $comentarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $comentarios;

@@ -18,7 +18,13 @@ class ApiComentariosController {
         $idProducto = $params[":ID"];
 
         if (isset($_GET['filtro'])){
-            $reviews = $this->model->getReviews($idProducto,$_GET['filtro']);
+            if (isset($_GET['order'])){
+                ///Tiene seteado el filtro y el orden
+                $reviews = $this->model->getReviews($idProducto,$_GET['filtro'],$_GET['order']);
+            } else {
+                ///Solo tiene seteado el filtro
+                $reviews = $this->model->getReviews($idProducto,$_GET['filtro'],"asc");
+            }
         } else {
             $reviews = $this->model->getReviews($idProducto);
         }

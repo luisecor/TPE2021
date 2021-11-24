@@ -24,13 +24,23 @@ let comentariosApp = new Vue({
 })
 
 
-async function getComentarios(filtro = null){
+async function getComentarios(filtro = null, order = null){
+    console.log(order);
     try {
         let response;
         if (!filtro){
+           // console.log("Sin filtro - Sin ORDEN "+`${URL_SPLITED}/${ID_PRODUCTO}`);
             response = await fetch(`${URL_SPLITED}/${ID_PRODUCTO}`);
+
         } else {
-            response = await fetch(`${URL_SPLITED}/${ID_PRODUCTO}?filtro=${filtro}`);
+            if (!order){
+               // console.log("Ccon filtro y sin ORDEN "+`${URL_SPLITED}/${ID_PRODUCTO}`);
+                response = await fetch(`${URL_SPLITED}/${ID_PRODUCTO}?filtro=${filtro}`);
+            }
+                else{
+               // console.log("CON filtro con ORDEN "+`${URL_SPLITED}/${ID_PRODUCTO}?filtro=${filtro}&order=${order}`);
+                response = await fetch(`${URL_SPLITED}/${ID_PRODUCTO}?filtro=${filtro}&order=${order}`);
+                }
         }
         if (response.ok){
             if (response.status == 200){
@@ -132,8 +142,15 @@ document.addEventListener('DOMContentLoaded', async() =>{
         let filtros = document.querySelectorAll("#filtros button");
         for (const filtro of filtros){
             filtro.addEventListener("click", async ()=>{
-                console.log(filtro.id.split("-")[1]);
-                await getComentarios( filtro.id.split("-")[1]) 
+                let order = "desc";
+                if (filtro.hasAttribute("asc")){
+                    filtro.toggleAttribute("asc");
+                     order = "asc";
+                } else {
+                    filtro.toggleAttribute("asc");
+                }
+                console.log(filtro.id.split("-")[1] + " order by " +order);
+                await getComentarios( filtro.id.split("-")[1], order); 
             })
         }
     }

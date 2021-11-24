@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-11-22 14:23:06
+/* Smarty version 3.1.39, created on 2021-11-24 03:49:35
   from 'C:\xampp\htdocs\proyectos\web2-2021\TPE-Bootstrap\ANITA\TPE-master\templates\productsList.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_619b99bad1c277_00757800',
+  'unifunc' => 'content_619da83f33a0a4_10629863',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5bec61b05ad8ad6bdbbbc0d033414c9d259b1636' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyectos\\web2-2021\\TPE-Bootstrap\\ANITA\\TPE-master\\templates\\productsList.tpl',
-      1 => 1637587182,
+      1 => 1637721496,
       2 => 'file',
     ),
   ),
@@ -22,11 +22,13 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_619b99bad1c277_00757800 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619da83f33a0a4_10629863 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 <div class="row justify-content-md-center">
     <div class="col-11">
+
+    
 
         <div class="container text-center">
             <h2 class="text-center m-md-3 p-md-3">Lista de productos</h2>
