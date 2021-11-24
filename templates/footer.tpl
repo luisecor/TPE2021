@@ -1,6 +1,6 @@
                 </div>
 
-                <footer class="row text-center fixed-bottom">
+                <footer class="row text-center static-bottom">
                     <div class="row justify-content-md-center align-items-center"> 
                         <div class="col-2 ">
                             <div class="col"> </p> Powered by </p> </div>

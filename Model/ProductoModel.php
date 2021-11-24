@@ -9,7 +9,7 @@ class ProductoModel{
     }
 
     function getProducts(){
-        $sentencia = $this->db->prepare("SELECT producto.id_producto,producto.nombre,producto.precio,producto.fk_categoria,producto.descripcion, categoria.nombre as categoria  FROM producto INNER JOIN categoria ON producto.fk_categoria = categoria.id_categoria order by nombre asc"); 
+        $sentencia = $this->db->prepare("SELECT producto.id_producto,producto.nombre,producto.precio,producto.fk_categoria,producto.descripcion, producto.imagen, categoria.nombre as categoria  FROM producto INNER JOIN categoria ON producto.fk_categoria = categoria.id_categoria order by nombre asc"); 
         $sentencia->execute();
         $productos = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $productos;
@@ -21,27 +21,39 @@ class ProductoModel{
     }
 
    function getProductsByCategoria($id){
-    $sentencia = $this->db->prepare("SELECT producto.id_producto, producto.nombre, producto.precio, producto.fk_categoria, producto.descripcion, categoria.nombre as categoria  FROM producto INNER JOIN categoria ON producto.fk_categoria = categoria.id_categoria WHERE fk_categoria=? order by nombre asc");
+    $sentencia = $this->db->prepare("SELECT producto.id_producto, producto.nombre, producto.precio, producto.fk_categoria, producto.descripcion, producto.imagen, categoria.nombre as categoria  FROM producto INNER JOIN categoria ON producto.fk_categoria = categoria.id_categoria WHERE fk_categoria=? order by nombre asc");
     $sentencia->execute([$id]); 
     $productos = $sentencia->fetchAll(PDO::FETCH_OBJ);
     return $productos;
    }
 
 
-   function addProducto($nombre, $precio, $categoria, $descripcion ){       
-       $sentencia = $this->db->prepare("INSERT INTO producto (nombre, precio, fk_categoria, descripcion) VALUES (?,?,?,?)");
-       $sentencia->execute(array($nombre,$precio,$categoria,$descripcion));       
-
+   function addProducto($nombre, $precio, $categoria, $descripcion, $imagen = null){
+        $pathImg = null;
+        if ($imagen) {
+            $pathImg = $this->uploadImage($imagen);
+        }
+       $sentencia = $this->db->prepare("INSERT INTO producto (nombre, precio, fk_categoria, descripcion, imagen) VALUES (?, ?, ?, ?, ?)");
+       $sentencia->execute(array($nombre, $precio, $categoria, $descripcion, $pathImg));       
    }
 
+   private function uploadImage($imagen){
+        $target = "img/product/" . uniqid("", true) . "." . strtolower(pathinfo($imagen['name'], PATHINFO_EXTENSION));  //generamos un codigo unico
+        move_uploaded_file($imagen['tmp_name'], $target); 
+        return $target;
+    }
 
-   function updateProduct ($id, $nombre, $descripcion, $precio, $categoria){
-       $sentencia = $this->db->prepare("UPDATE producto SET nombre=? , precio=?, fk_categoria=?, descripcion=? WHERE id_producto = ?");
-       $sentencia->execute(array($nombre,$precio,$categoria,$descripcion,$id));
+   function updateProduct ($id, $nombre, $descripcion, $precio, $categoria, $imagen = null) {
+        $pathImg = null;
+        if ($imagen) {
+            $pathImg = $this->uploadImage($imagen);
+        }
+       $sentencia = $this->db->prepare("UPDATE producto SET nombre=? , precio=?, fk_categoria=?, descripcion=?, imagen=? WHERE id_producto = ?");
+       $sentencia->execute(array($nombre, $precio, $categoria, $descripcion, $pathImg, $id));
    }
 
    function getProduct($id) {
-       $sentencia = $this->db->prepare("SELECT producto.id_producto,producto.nombre,producto.precio,producto.fk_categoria,producto.descripcion, categoria.nombre as categoria  FROM producto INNER JOIN categoria ON producto.fk_categoria = categoria.id_categoria WHERE id_producto = ? ");
+       $sentencia = $this->db->prepare("SELECT producto.id_producto,producto.nombre,producto.precio,producto.fk_categoria,producto.descripcion, producto.imagen, categoria.nombre as categoria  FROM producto INNER JOIN categoria ON producto.fk_categoria = categoria.id_categoria WHERE id_producto = ? ");
        $sentencia->execute(array($id));
        $producto = $sentencia->fetch(PDO::FETCH_OBJ);
        return $producto;

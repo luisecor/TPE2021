@@ -23,6 +23,7 @@ class ProductoView {
 
      
      function updateProductoMenu($producto, $categorias, $logueado = true){
+        $this->smarty->assign('roleUser', 1);
         $this->smarty->assign("producto", $producto);
         $this->smarty->assign('categorias', $categorias);
         $this->smarty->assign('logueado', $logueado);
