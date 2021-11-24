@@ -53,7 +53,7 @@ class ApiComentariosController {
         $comentario = $this->model->getComentario($idComentario);
         if ($comentario) {
             $this->model->eliminarComentario($idComentario);
-            $this->view->response("El cometrio con el id=$idComentario fue borrado", 200);
+            $this->view->response("El comentario con el id=$idComentario fue borrado", 200);
         } else {
             $this->view->response("El comentario con el id=$idComentario no existe", 404);
         }

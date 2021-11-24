@@ -14,12 +14,13 @@ class ProductoView {
     }
 
 
-    function showProducts($productos, $roleUser, $logueado){
+    function showProducts($productos, $roleUser, $logueado, $error = null){
         $this->smarty->assign('productos', $productos);
         $this->smarty->assign('roleUser', $roleUser);
         $this->smarty->assign('logueado', $logueado);
+        $this->smarty->assign('error', $error);
         $this->smarty->display('./templates/productsList.tpl'); 
-     }
+    }
 
      
      function updateProductoMenu($producto, $categorias, $logueado = true){
@@ -28,7 +29,7 @@ class ProductoView {
         $this->smarty->assign('categorias', $categorias);
         $this->smarty->assign('logueado', $logueado);
         $this->smarty->display('./templates/forms/formProductoUpdate.tpl');
-     }
+    }
  
      function showProduct($producto, $roleUser, $logueado, $id_user = null){
         $this->smarty->assign("producto", $producto);
@@ -36,9 +37,9 @@ class ProductoView {
         $this->smarty->assign('logueado', $logueado); 
         $this->smarty->assign('id_user', $id_user);       
         $this->smarty->display('./templates/product.tpl');
-     }
+    }
 
-     function showFormProductos($categorias) {
+    function showFormProductos($categorias) {
         $this->smarty->assign('roleUser', 1);
         $this->smarty->assign('logueado', true);
         $this->smarty->assign('categorias', $categorias);

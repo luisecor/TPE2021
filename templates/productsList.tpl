@@ -22,7 +22,11 @@
                     <h5> Descripcion </h5>
                 </div>
             </div>
-
+            {if $error}
+                <div class="container alert alert-danger p-md-2 m-md-3" role="alert">
+                    {$error}
+                </div>
+            {/if}    
             <div class="accordion accordion-flush">
                 {foreach from=$productos item=$producto}
                     <div class="row">

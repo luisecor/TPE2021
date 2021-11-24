@@ -32,9 +32,14 @@ class CategoriaController{
         $this->categoriaView->showCategorias($categorias, $productos, $this->authHelper->loggedIn(), $this->authHelper->getRole());
     }
 
-    function verPorCategoria($id){
+    function verPorCategoria($id) {
         $productos = $this->productoModel->getProductsByCategoria($id);
-        $this->productoView->showProducts($productos, $this->authHelper->getRole(), $this->authHelper->loggedIn());
+        if(!empty($productos)) {
+            $this->productoView->showProducts($productos, $this->authHelper->getRole(), $this->authHelper->loggedIn());
+        } else {
+            $error = 'No hay productos para esta categoria';
+            $this->productoView->showProducts($productos, $this->authHelper->getRole(), $this->authHelper->loggedIn(), $error);
+        }
     }
 
     function showFormCategorias(){
@@ -51,17 +56,21 @@ class CategoriaController{
         if (isset($_REQUEST['nombre']) && !empty($_REQUEST['nombre'])){
             $this->categoriaModel->addCategoria($_REQUEST['nombre']);
             header("Location: ".BASE_URL."verCategorias"); 
+        } else {
+            $error = 'Mal seteados los campos de la categoria';
+            $this->categoriaView->showCategoriaS($this->categoriaModel->getCategorias(), $this->productoModel->getProducts(), $this->authHelper->loggedIn(), $this->authHelper->getRole(), $error);
         }
     }
 
     function eliminarCategoria($id){
         $productos = $this->productoModel->getProductsByCategoria($id);
-        if(sizeof($productos) == 0) {
+        if(sizeof($productos) == 0) { //Si no hay productos elimino
             $this->categoriaModel->eliminarCategoria($id);
             header("Location: ".BASE_URL."verCategorias");
         } else {
             $error = 'No es posible eliminar categoría con productos vinculados';
-            $this->categoriaView->showCategoriaS($this->categoriaModel->getCategorias(), $this->productoModel->getProducts(), $this->authHelper->loggedIn(), $error);
+            $this->categoriaView->showCategoriaS($this->categoriaModel->getCategorias(), $this->productoModel->getProducts(), $this->authHelper->loggedIn(),  $this->authHelper->getRole(), $error);
+            
         }
     }
 

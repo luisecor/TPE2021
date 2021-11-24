@@ -46,7 +46,6 @@
               {/foreach}
             </div>
           </fieldset>
-          imagen
           <button type="submit" class="btn btn-primary">Agregar</button>
         </form>
 

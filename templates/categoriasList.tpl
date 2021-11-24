@@ -13,7 +13,7 @@
                 </div>
             </div>
 
-            <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion accordion-flush">
                 {foreach from=$categorias item=$categoria}
                     <div class="row">
                         <div class="accordion-item">
@@ -22,13 +22,10 @@
                                     data-bs-target="#flush-{$categoria->id_categoria}" aria-expanded="false"
                                     aria-controls="flush-{$categoria->id_categoria}">
                                     <div class="col"> {$categoria->nombre} </div>
-
-
                                 </button>
                             </h2>
-                            <div id="flush-{$categoria->id_categoria}" class=" row accordion-collapse collapse"
-                                aria-labelledby="flush-heading{$categoria->id_categoria}"
-                                data-bs-parent="#accordionFlushExample">
+                            <div id="flush-{$categoria->id_categoria}" class="row accordion-collapse collapse"
+                                aria-labelledby="flush-heading{$categoria->id_categoria}">
 
 
                                 <div class="row">
@@ -49,7 +46,6 @@
                                                 <div class="col"> {$producto->nombre} </div>
                                                 <div class="col"> {$producto->precio} </div>
                                                 <div class="col">{$categoria->nombre} </div>
-            
                                             {/if}
                                         </div>
                                     {/foreach}

@@ -13,8 +13,6 @@ class ProductoController {
     private $categoriaModel;
     private $authHelper;
 
-//Agregamos mensajes de error?
-
     function __construct() {
         $this->productoModel = new ProductoModel();
         $this->categoriaModel = new CategoriaModel();

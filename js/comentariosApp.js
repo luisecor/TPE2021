@@ -51,8 +51,7 @@ async function getComentarios(filtro = null, order = null){
                 if (response.status == 204){
                     comentariosApp.comentarios = "";
                 }
-            }
-            
+            }        
         }
     } catch (e){
         console.log(e);
@@ -66,12 +65,6 @@ async function addComment(e) {
     e.preventDefault();
     let puntaje = document.querySelector('#puntaje').value;
     let review = document.querySelector('#review').value ;
-
-    console.log("Puntaje " + puntaje);
-    console.log("Review " + review);
-    console.log("ID User " + ID_USER);
-    console.log("Id producto " + ID_PRODUCTO); 
-
     
     let newComment = {
         puntaje: puntaje,
@@ -120,20 +113,15 @@ document.addEventListener('DOMContentLoaded', async() =>{
     await getComentarios();
     //Una vez que esta la pagina totalente cargada-->Que ya paso por el VUE
     if (ROLEUSER == 1){
-        console.log("USUARIO ADMIN");
-        
+
         let botones = document.querySelectorAll("#comentariosApp button");
 
         for (const boton of botones){
             boton.addEventListener("click", async ()=>{
                 const id_review = boton.id.split("-")[1];
-                console.log(id_review);
                 await deleteComment(id_review);        
             })
         }
-        // botones.forEach(boton => {boton.addEventListener("click",async (e)=>{
-        //     console.log(boton);    
-        // })});
     }  
 
     if (document.querySelectorAll(".comentario").length > 0){
