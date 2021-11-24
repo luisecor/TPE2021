@@ -6,7 +6,7 @@
             <h2 class="text-center m-md-3 p-md-3">Lista de usuarios</h2>
         </div>
         <div class="row border p-1">
-            <div class="row col-9">
+            <div class="row">
                 <div class="col">
                     <h5> Id Usuario </h5>
                 </div>
@@ -20,19 +20,16 @@
             <div class="accordion accordion-flush">
                 {foreach from=$usuarios item=$usuario}
                     <div class="row">
-                        <div class="accordion-item">
-                            <div class="accordion-button collapsed"> 
+                        
+                            <div class="row"> 
                                 <div class="col"> {$usuario->id_user} </div>
                                 <div class="col"> {$usuario->email} </div>
-                                <div class="col"> {$usuario->roleUser} </div>
-                                <div class="col-1 " scope="row">
-                                    <a class="btn btn-primary" href="{$base_url}showFormUser/{$usuario->id_user}">Update</a>
-                                </div>
-                                <div class="col-1" scope="row">
-                                    <a class="btn btn-warning" href="{$base_url}eliminarUsuario/{$usuario->id_user}">Eliminar</a>
+                                <div class="col"> {$usuario->roleUser} ------------------> 
+                                    <a class="btn btn-outline-primary btn-sm float-right" href="{$base_url}showFormUser/{$usuario->id_user}">Update</a>
+                                    <a class="btn btn-outline-warning btn-sm float-right" href="{$base_url}eliminarUsuario/{$usuario->id_user}">Eliminar</a>
                                 </div>
                             </div>
-                        </div>
+                        
                     </div>
                 {/foreach}
             </div>
