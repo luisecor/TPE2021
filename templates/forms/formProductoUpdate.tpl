@@ -5,7 +5,8 @@
     <div class="p-md-3 m-md-3 container bg-light">
  
         <h3 class="text-center m-md-3 p-md-3"> Modificar Producto </h3>
-        <form action="{$base_url}updateProducto" method="post">
+
+        <form action="{$base_url}updateProducto" method="post" enctype="multipart/form-data">
           <div class="row mb-3">
             <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
             <div class="col-sm-10">
@@ -24,6 +25,14 @@
               <input type="number" class="form-control" id="precio" name="precio"value="{$producto->precio}" required>
             </div>
           </div>
+
+          <div class="row mb-3">
+            <label for="precio" class="col-sm-2 col-form-label">Imagen</label>
+            <div class="col-sm-10">
+              <input type="file" class="form-control" id="imagen" name="input_name">
+            </div>
+          </div>
+
           <fieldset class="row mb-3">
             <legend class="col-form-label col-sm-2 pt-0">Categorias</legend>
             <div class="col-sm-10">

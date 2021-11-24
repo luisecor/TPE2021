@@ -57,11 +57,15 @@ class ProductoController {
         if (isset($_REQUEST['nombre']) && !empty($_REQUEST['nombre'])
             && isset($_REQUEST['precio']) && $_REQUEST['precio']>=0
             && isset($_REQUEST['categoria'])
-            && isset($_REQUEST['descripcion']) ){ 
-               $this->productoModel->addProducto($_REQUEST['nombre'], $_REQUEST['precio'],$_REQUEST['categoria'], $_REQUEST['descripcion']);
-               header("Location: ".BASE_URL."verProductos"); 
-        } 
+            && isset($_REQUEST['descripcion']) ) { 
+                if($_FILES['input_name']['type'] == "image/jpg" || $_FILES['input_name']['type'] == "image/jpeg" || $_FILES['input_name']['type'] == "image/png") {
+                    $this->productoModel->addProducto($_REQUEST['nombre'], $_REQUEST['precio'],$_REQUEST['categoria'], $_REQUEST['descripcion'], $_FILES['input_name']['tmp_name']); 
+                } else {
+                    $this->productoModel->addProducto($_REQUEST['nombre'], $_REQUEST['precio'],$_REQUEST['categoria'], $_REQUEST['descripcion']);
+                } 
 
+                header("Location: ".BASE_URL."verProductos");
+        }
     }
 
     
@@ -78,7 +82,12 @@ class ProductoController {
             && isset($_REQUEST['precio']) && $_REQUEST['precio']>0
             && isset($_REQUEST['categoria'])
             && isset($_REQUEST['descripcion']) ) {
-            $this->productoModel->updateProduct($_REQUEST['id'], $_REQUEST['nombre'],$_REQUEST['descripcion'], $_REQUEST['precio'], $_REQUEST['categoria']);
+                if($_FILES['input_name']['type'] == "image/jpg" || $_FILES['input_name']['type'] == "image/jpeg" || $_FILES['input_name']['type'] == "image/png") {
+                    $this->productoModel->updateProduct($_REQUEST['id'], $_REQUEST['nombre'], $_REQUEST['descripcion'], $_REQUEST['precio'], $_REQUEST['categoria'], $_FILES['input_name']); 
+                } else {
+                    $this->productoModel->updateProduct($_REQUEST['id'], $_REQUEST['nombre'],$_REQUEST['descripcion'], $_REQUEST['precio'], $_REQUEST['categoria']);
+                }
+
             $this->getProducts();
         } 
     }
