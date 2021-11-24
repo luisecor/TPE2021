@@ -26,6 +26,11 @@ class ApiComentariosController {
                 $reviews = $this->model->getReviews($idProducto,$_GET['filtro'],"asc");
             }
         } else {
+            if (isset($_GET['where']) && $_GET['where'] >= 0 && $_GET['where'] <=5  ){
+                //echo("ENTRASTE AL WHERE");
+                $reviews = $this->model->getReviews($idProducto,null,null,$_GET['where']);
+               
+            } else
             $reviews = $this->model->getReviews($idProducto);
         }
 

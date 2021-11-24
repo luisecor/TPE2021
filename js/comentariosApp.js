@@ -23,14 +23,27 @@ let comentariosApp = new Vue({
     
 })
 
+async function getComentariosXFiltro(filtro = null){
+    if (filtro && filtro>=0 && filtro <=5){
+        //console.log(filtro);
+        await getComentarios(null,null,filtro);
 
-async function getComentarios(filtro = null, order = null){
+    } else {
+        await getComentarios();
+    }
+}
+
+async function getComentarios(filtro = null, order = null, condicion = null){
     //console.log(order);
+    console.log("getComentarios" + condicion);
     try {
         let response;
         if (!filtro){
            // console.log("Sin filtro - Sin ORDEN "+`${URL_SPLITED}/${ID_PRODUCTO}`);
             response = await fetch(`${URL_SPLITED}/${ID_PRODUCTO}`);
+            if (condicion){
+                response = await fetch(`${URL_SPLITED}/${ID_PRODUCTO}?where=${condicion}`);
+            }
 
         } else {
             if (!order){
@@ -127,20 +140,30 @@ document.addEventListener('DOMContentLoaded', async() =>{
     if (document.querySelectorAll(".comentario").length > 0){
         document.querySelectorAll("#filtros")[0].toggleAttribute("hidden")
         //Si tengo comentarios muestro los filtos
-        let filtros = document.querySelectorAll("#filtros button");
-        for (const filtro of filtros){
-            filtro.addEventListener("click", async ()=>{
+        let ordenadores = document.querySelectorAll("#filtros .orden");
+        for (const ordenador of ordenadores){
+            ordenador.addEventListener("click", async ()=>{
                 let order = "desc";
-                if (filtro.hasAttribute("asc")){
-                    filtro.toggleAttribute("asc");
+                if (ordenador.hasAttribute("asc")){
+                    ordenador.toggleAttribute("asc");
                      order = "asc";
                 } else {
-                    filtro.toggleAttribute("asc");
+                    ordenador.toggleAttribute("asc");
                 }
                // console.log(filtro.id.split("-")[1] + " order by " +order);
-                await getComentarios( filtro.id.split("-")[1], order); 
+                await getComentarios( ordenador.id.split("-")[1], order); 
             })
         }
+
+        let filtros = document.querySelectorAll("#filtros .filtro");
+        for (let filtro of filtros){
+            filtro.addEventListener("click", async ()=> {
+                let identidicador = filtro.id.split("-")[2];
+                //console.log(identidicador);
+                await getComentariosXFiltro(identidicador);
+            })
+        }
+
     }
     
     })
