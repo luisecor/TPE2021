@@ -14,10 +14,11 @@ class ProductoView {
     }
 
 
-    function showProducts($productos, $roleUser, $logueado, $error = null){
+    function showProducts($productos, $roleUser, $logueado, $maxPrice = null, $error = null){
         $this->smarty->assign('productos', $productos);
         $this->smarty->assign('roleUser', $roleUser);
         $this->smarty->assign('logueado', $logueado);
+        $this->smarty->assign('maxPrice', $maxPrice);
         $this->smarty->assign('error', $error);
         $this->smarty->display('./templates/productsList.tpl'); 
     }

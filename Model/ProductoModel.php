@@ -15,6 +15,41 @@ class ProductoModel{
         return $productos;
     }
 
+    function getProductsFiltros($categoria = null, $maxPrice = null){
+        //echo($categoria . "  ". $maxPrice." ") ;
+       
+
+        $filtro="";
+        $array="";
+
+       if ($categoria && $categoria>0){
+           if ($maxPrice && $maxPrice>0){
+                $filtro="WHERE fk_categoria = ? AND precio <= ?";
+                $array = array($categoria,$maxPrice);
+           } else {
+                $filtro="WHERE fk_categoria = ?";
+                $array = array($categoria);
+           }
+           
+       } else {
+        if ($maxPrice && $maxPrice>0){
+            $filtro = "WHERE precio <= ?";
+            $array = array($maxPrice);
+        } else{
+
+           $filtro = "WHERE precio <= ?";
+           $array = array("0");}
+       }
+        
+        $sentencia = $this->db->prepare("SELECT producto.id_producto, producto.nombre, producto.precio, producto.fk_categoria, producto.descripcion, producto.imagen, categoria.nombre as categoria  FROM producto INNER JOIN categoria ON producto.fk_categoria = categoria.id_categoria $filtro");
+        $sentencia->execute($array);
+        $productos = $sentencia->fetchAll(PDO::FETCH_OBJ);
+       // print_r($productos);
+        return $productos;
+
+                
+    }
+
     function eliminarProductoDeDB($id){
         $sentencia = $this->db->prepare("DELETE FROM producto WHERE id_producto=?");
         $sentencia->execute(array($id));
