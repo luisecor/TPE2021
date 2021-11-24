@@ -35,7 +35,7 @@ async function getComentariosXFiltro(filtro = null){
 
 async function getComentarios(filtro = null, order = null, condicion = null){
     //console.log(order);
-    console.log("getComentarios" + condicion);
+    //console.log("getComentarios" + condicion);
     try {
         let response;
         if (!filtro){
