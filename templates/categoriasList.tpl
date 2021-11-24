@@ -28,7 +28,7 @@
                                 aria-labelledby="flush-heading{$categoria->id_categoria}">
 
 
-                                <div class="row">
+                                <div class="row"> {* Productos *}
                                     <div class="row">
                                         <div class="col">
                                             <h6> Nombre </h6>
@@ -50,12 +50,14 @@
                                         </div>
                                     {/foreach}
                                     {if $logueado && $roleUser == 1}
-                                        <div class="col-1" scope="row">
-                                            <a class="btn btn-primary" href="{$base_url}updateCategoriaMenu/{$categoria->id_categoria}">Update</a>
-                                        </div>
-                                        <div class="col-1" scope="row">
-                                            <a class="btn btn-warning" href="{$base_url}eliminarCategoria/{$categoria->id_categoria}">Eliminar</a>
-                                        </div>
+                                       <div class="d-flex flex-row-reverse">
+                                            <div class="col-1">
+                                                <a class="btn btn-outline-primary btn-sm" href="{$base_url}updateCategoriaMenu/{$categoria->id_categoria}">Update</a>
+                                            </div>
+                                            <div class="col-1">
+                                                <a class="btn btn-outline-warning btn-sm float-right" href="{$base_url}eliminarCategoria/{$categoria->id_categoria}">Eliminar</a>
+                                            </div>
+                                       </div>
                                     {/if}
                                 </div>
 
