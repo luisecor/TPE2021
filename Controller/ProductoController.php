@@ -31,7 +31,12 @@ class ProductoController {
 
     function getProducts(){
         $productos = $this->productoModel->getProducts();
-        $this->productoView->showProducts($productos, $this->authHelper->getRole(), $this->authHelper->loggedIn());
+        $maxPrice = 0;
+        foreach ($productos as $producto) {
+            if ($producto->precio > $maxPrice)
+            $maxPrice=$producto->precio;
+        }
+        $this->productoView->showProducts($productos, $this->authHelper->getRole(), $this->authHelper->loggedIn(),$maxPrice);
     }
 
     function showFormProductos(){
@@ -88,6 +93,35 @@ class ProductoController {
 
             $this->getProducts();
         } 
+    }
+
+    function filtroAvanzado(){
+
+        $productosDB = $this->productoModel->getProducts();
+        $maxPrice = 0;
+
+        foreach ($productosDB as $producto) {
+            if ($producto->precio > $maxPrice)
+            $maxPrice=$producto->precio;
+        }
+
+        if (isset($_GET['maxPrice']) && $_GET['maxPrice']>= 0 && $_GET['maxPrice'] <= $maxPrice){
+           // echo("HAY MAX PRICE   ");
+            if (isset($_GET['categoria']) ) {
+                $productos = $this->productoModel->getProductsFiltros($_GET['categoria'],$_GET['maxPrice']);
+            } else {
+               // echo("   Sin categoria");
+                $productos = $this->productoModel->getProductsFiltros(null,$_GET['maxPrice']);
+            }          
+        } else {
+            if (isset($_GET['categoria']) ){
+               // echo("Entraste por categorias");
+                $productos = $this->productoModel->getProductsFiltros($_GET['categoria']);
+            } else 
+            $productos = $this->productoModel->getProducts();
+        }
+        //var_dump($productos);
+        $this->productoView->showProducts($productos, $this->authHelper->getRole(), $this->authHelper->loggedIn(),$maxPrice);
     }
 
 }

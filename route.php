@@ -97,6 +97,9 @@ switch ($params[0]) {
     case 'updateUsuario':
         $usuariosController->updateUsuario();
         break;
+    case 'filtroAvanzado':
+        $productoController->filtroAvanzado();
+        break;
     default: 
         echo('404 Page not found'); 
         break;

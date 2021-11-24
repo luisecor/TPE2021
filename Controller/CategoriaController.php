@@ -34,11 +34,16 @@ class CategoriaController{
 
     function verPorCategoria($id) {
         $productos = $this->productoModel->getProductsByCategoria($id);
+        $maxPrice = 0;
         if(!empty($productos)) {
-            $this->productoView->showProducts($productos, $this->authHelper->getRole(), $this->authHelper->loggedIn());
+            foreach ($productos as $producto) {
+                if ($producto->precio > $maxPrice)
+                $maxPrice=$producto->precio;
+            }
+            $this->productoView->showProducts($productos, $this->authHelper->getRole(), $this->authHelper->loggedIn(),$maxPrice);
         } else {
             $error = 'No hay productos para esta categoria';
-            $this->productoView->showProducts($productos, $this->authHelper->getRole(), $this->authHelper->loggedIn(), $error);
+            $this->productoView->showProducts($productos, $this->authHelper->getRole(), $this->authHelper->loggedIn(),$maxPrice, $error);
         }
     }
 
