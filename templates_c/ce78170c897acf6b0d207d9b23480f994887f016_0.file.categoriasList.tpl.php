@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-11-23 00:10:48
+/* Smarty version 3.1.39, created on 2021-11-24 14:40:06
   from 'C:\xampp\htdocs\proyectos\web2-2021\TPE-Bootstrap\ANITA\TPE-master\templates\categoriasList.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_619c2378bcf053_20407361',
+  'unifunc' => 'content_619e40b67bc1c0_42600047',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ce78170c897acf6b0d207d9b23480f994887f016' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyectos\\web2-2021\\TPE-Bootstrap\\ANITA\\TPE-master\\templates\\categoriasList.tpl',
-      1 => 1637587182,
+      1 => 1637761204,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./footer.tpl' => 1,
   ),
 ),false)) {
-function content_619c2378bcf053_20407361 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619e40b67bc1c0_42600047 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:./header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -68,8 +68,7 @@ $_smarty_tpl->tpl_vars['categoria']->do_else = false;
                                 data-bs-parent="#accordionFlushExample">
 
 
-                                <div class="row">
-                                    <div class="row">
+                                <div class="row">                                     <div class="row">
                                         <div class="col">
                                             <h6> Nombre </h6>
                                         </div>
@@ -101,16 +100,18 @@ $_smarty_tpl->tpl_vars['producto']->do_else = false;
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                                     <?php if ($_smarty_tpl->tpl_vars['logueado']->value && $_smarty_tpl->tpl_vars['roleUser']->value == 1) {?>
-                                        <div class="col-1" scope="row">
-                                            <a class="btn btn-primary" href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
+                                       <div class="d-flex flex-row-reverse">
+                                            <div class="col-1">
+                                                <a class="btn btn-outline-primary btn-sm" href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
 updateCategoriaMenu/<?php echo $_smarty_tpl->tpl_vars['categoria']->value->id_categoria;?>
 ">Update</a>
-                                        </div>
-                                        <div class="col-1" scope="row">
-                                            <a class="btn btn-warning" href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
+                                            </div>
+                                            <div class="col-1">
+                                                <a class="btn btn-outline-warning btn-sm float-right" href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
 eliminarCategoria/<?php echo $_smarty_tpl->tpl_vars['categoria']->value->id_categoria;?>
 ">Eliminar</a>
-                                        </div>
+                                            </div>
+                                       </div>
                                     <?php }?>
                                 </div>
 

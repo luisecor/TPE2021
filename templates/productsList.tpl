@@ -8,7 +8,7 @@
             <h2 class="text-center m-md-3 p-md-3">Lista de productos</h2>
         </div>
         <div class="row border p-1">
-            <div class="row col-9">
+            <div class="row">
                 <div class="col">
                     <h5> Nombre </h5>
                 </div>
@@ -27,19 +27,16 @@
                 {foreach from=$productos item=$producto}
                     <div class="row">
                         <div class="accordion-item">
-                            <div class="accordion-button collapsed"> 
+                            <div class="row"> 
                                 <div class="col"> {$producto->nombre} </div>
                                 <div class="col"> {$producto->precio} </div>
                                 <div class="col">{$producto->categoria} </div>
-                                <div class="col"><a class="btn btn-outline-secondary btn-sm" href="{$base_url}verProducto/{$producto->id_producto}"> Descripción </a> </div>
+                                <div class="col"><a class="btn btn-outline-secondary btn-sm" href="{$base_url}verProducto/{$producto->id_producto}"> Descripción </a> 
                                 {if $logueado && $roleUser == 1}
-                                    <div class="col-1 " scope="row">
-                                        <a class="btn btn-primary" href="{$base_url}updateProductoMenu/{$producto->id_producto}">Update</a>
-                                    </div>
-                                    <div class="col-1" scope="row">
-                                        <a class="btn btn-warning" href="{$base_url}eliminarProducto/{$producto->id_producto}">Eliminar</a>
-                                    </div>
+                                        <a class="btn btn-outline-primary btn-sm" href="{$base_url}updateProductoMenu/{$producto->id_producto}">Update</a>
+                                        <a class="btn btn-outline-warning btn-sm" href="{$base_url}eliminarProducto/{$producto->id_producto}">Eliminar</a>
                                 {/if}
+                                </div>
                             </div>
                         </div>
                     </div>
