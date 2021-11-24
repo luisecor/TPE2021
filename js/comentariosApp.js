@@ -25,7 +25,7 @@ let comentariosApp = new Vue({
 
 
 async function getComentarios(filtro = null, order = null){
-    console.log(order);
+    //console.log(order);
     try {
         let response;
         if (!filtro){
@@ -45,7 +45,7 @@ async function getComentarios(filtro = null, order = null){
         if (response.ok){
             if (response.status == 200){
                 let comentarios = await response.json();
-                console.log(comentarios);
+               // console.log(comentarios);
                 comentariosApp.comentarios = comentarios;
             }   else {
                 if (response.status == 204){
@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', async() =>{
                 } else {
                     filtro.toggleAttribute("asc");
                 }
-                console.log(filtro.id.split("-")[1] + " order by " +order);
+               // console.log(filtro.id.split("-")[1] + " order by " +order);
                 await getComentarios( filtro.id.split("-")[1], order); 
             })
         }
