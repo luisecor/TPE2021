@@ -20,9 +20,15 @@ class ApiComentariosController {
         if (isset($_GET['filtro'])){
             if (isset($_GET['order'])){
                 ///Tiene seteado el filtro y el orden
+                if (isset($_GET['where']) && $_GET['where'] >= 0 && $_GET['where'] <=5 ){
+                    $reviews = $this->model->getReviews($idProducto,$_GET['filtro'],$_GET['order'],$_GET['where']);
+                } else
                 $reviews = $this->model->getReviews($idProducto,$_GET['filtro'],$_GET['order']);
             } else {
                 ///Solo tiene seteado el filtro
+                if (isset($_GET['where']) && $_GET['where'] >= 0 && $_GET['where'] <=5 ){
+                    $reviews = $this->model->getReviews($idProducto,$_GET['filtro'],"asc",$_GET['where']);
+                } else
                 $reviews = $this->model->getReviews($idProducto,$_GET['filtro'],"asc");
             }
         } else {

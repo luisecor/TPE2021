@@ -47,10 +47,16 @@ async function getComentarios(filtro = null, order = null, condicion = null){
 
         } else {
             if (!order){
+                if (condicion){
+                    response = await fetch(`${URL_SPLITED}/${ID_PRODUCTO}?where=${condicion}&filtro=${filtro}`);
+                } else
                // console.log("Ccon filtro y sin ORDEN "+`${URL_SPLITED}/${ID_PRODUCTO}`);
                 response = await fetch(`${URL_SPLITED}/${ID_PRODUCTO}?filtro=${filtro}`);
             }
                 else{
+                    if (condicion){
+                        response = await fetch(`${URL_SPLITED}/${ID_PRODUCTO}?where=${condicion}&filtro=${filtro}&order=${order}`);
+                    }
                // console.log("CON filtro con ORDEN "+`${URL_SPLITED}/${ID_PRODUCTO}?filtro=${filtro}&order=${order}`);
                 response = await fetch(`${URL_SPLITED}/${ID_PRODUCTO}?filtro=${filtro}&order=${order}`);
                 }
@@ -158,7 +164,7 @@ document.addEventListener('DOMContentLoaded', async() =>{
         let filtros = document.querySelectorAll("#filtros .filtro");
         for (let filtro of filtros){
             filtro.addEventListener("click", async ()=> {
-                let identidicador = filtro.id.split("-")[2];
+                const identidicador = filtro.id.split("-")[2];
                 //console.log(identidicador);
                 await getComentariosXFiltro(identidicador);
             })
