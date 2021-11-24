@@ -27,10 +27,10 @@
                     {$error}
                 </div>
             {/if}    
-            <div class="accordion accordion-flush">
+            <div class="accordion accordion-flush p-md-2 m-md-3">
                 {foreach from=$productos item=$producto}
                     <div class="row">
-                        <div class="accordion-item">
+                        <div class="accordion-item p-md-2 m-md-2">
                             <div class="row"> 
                                 <div class="col"> {$producto->nombre} </div>
                                 <div class="col"> {$producto->precio} </div>

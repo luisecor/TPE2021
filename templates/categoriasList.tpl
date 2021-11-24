@@ -13,7 +13,7 @@
                 </div>
             </div>
 
-            <div class="accordion accordion-flush">
+            <div class="accordion accordion-flush p-md-2 m-md-3">
                 {foreach from=$categorias item=$categoria}
                     <div class="row">
                         <div class="accordion-item">
