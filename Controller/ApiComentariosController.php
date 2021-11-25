@@ -80,7 +80,7 @@ class ApiComentariosController {
                 $this->view->response("El comentario no se pudo insertar", 500);
             } 
         } else {
-            $this->view->response('No es posible insertar el comentario',500); //que error le mando?
+            $this->view->response('No es posible insertar el comentario',500);
         }
     }
 

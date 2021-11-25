@@ -3,12 +3,12 @@
     <h3  class="m-md-3">Comentarios</h3>
     <div id="filtros" class="row">
          <div  class="btn-group me-2" role="group" aria-label="First group">
-                <span class =col-4> Ordernar comentarios por:   </span>
+                <span class =col-4> <p>  Ordernar comentarios por:  </p>  </span>
                 <button type="button" id="filtro-antiq" class="orden btn btn-outline-secondary">Antigüedad</button>
                 <button type="button" id="filtro-puntaje" class="orden btn btn-outline-secondary">Puntaje</button>
         </div>
         <div class="btn-group me-2" role="group" aria-label="First group">
-                <span class =col-4> Filtrar comentarios segun puntaje   </span>
+                <span class =col-4> <p> Filtrar comentarios segun puntaje </p> </span>
                 <button type="button" id="filtro-puntaje-1" class="filtro btn btn-outline-secondary">1</button>
                 <button type="button" id="filtro-puntaje-2" class="filtro btn btn-outline-secondary">2</button>
                 <button type="button" id="filtro-puntaje-3" class="filtro btn btn-outline-secondary">3</button>

@@ -12,8 +12,7 @@ class ApiProductosController {
     private $modelCategorias;
     private $view;
 
-    function __construct()
-    {
+    function __construct() {
         $this->model = new ProductoModel();
         $this->view = new ApiView();
         $this->modelCategorias = new CategoriaModel();
