@@ -46,9 +46,11 @@
                 </form>               
 
             {/if} 
+
             {include file="Vue/comentarios.tpl"}
+            
             {if $roleUser eq 0 }
-                <div> <h5> Para dejar un comentario es necesario estar logeado</h5> </div>
+                <div> <h4> Para dejar un comentario es necesario estar logeado </h4> </div>
             {/if}
         </div>   
     </div>

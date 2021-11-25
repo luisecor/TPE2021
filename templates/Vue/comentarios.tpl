@@ -3,17 +3,17 @@
     <h3  class="m-md-3">Comentarios</h3>
     <div id="filtros" class="row">
          <div  class="btn-group me-2" role="group" aria-label="First group">
-                <span class =col-4> <p>  Ordernar comentarios por:  </p>  </span>
-                <button type="button" id="filtro-antiq" class="orden btn btn-outline-secondary">Antigüedad</button>
-                <button type="button" id="filtro-puntaje" class="orden btn btn-outline-secondary">Puntaje</button>
+            <p class="col-4 m-md-3">  Ordernar comentarios por:  </p>
+            <button type="button" id="filtro-antiq" class="orden btn btn-outline-secondary">Antigüedad</button>
+            <button type="button" id="filtro-puntaje" class="orden btn btn-outline-secondary">Puntaje</button>
         </div>
         <div class="btn-group me-2" role="group" aria-label="First group">
-                <span class =col-4> <p> Filtrar comentarios segun puntaje </p> </span>
-                <button type="button" id="filtro-puntaje-1" class="filtro btn btn-outline-secondary">1</button>
-                <button type="button" id="filtro-puntaje-2" class="filtro btn btn-outline-secondary">2</button>
-                <button type="button" id="filtro-puntaje-3" class="filtro btn btn-outline-secondary">3</button>
-                <button type="button" id="filtro-puntaje-4" class="filtro btn btn-outline-secondary">4</button>
-                <button type="button" id="filtro-puntaje-5" class="filtro btn btn-outline-secondary">5</button>
+            <p class="col-4 m-md-3"> Filtrar comentarios segun puntaje </p> 
+            <button type="button" id="filtro-puntaje-1" class="filtro btn btn-outline-secondary">1</button>
+            <button type="button" id="filtro-puntaje-2" class="filtro btn btn-outline-secondary">2</button>
+            <button type="button" id="filtro-puntaje-3" class="filtro btn btn-outline-secondary">3</button>
+            <button type="button" id="filtro-puntaje-4" class="filtro btn btn-outline-secondary">4</button>
+            <button type="button" id="filtro-puntaje-5" class="filtro btn btn-outline-secondary">5</button>
         </div>
     </div>
      

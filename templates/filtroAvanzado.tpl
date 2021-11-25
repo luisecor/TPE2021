@@ -1,5 +1,5 @@
  </div>
-         <div class ="row" id="filtroAvanzado">
+    <div class ="row" id="filtroAvanzado">
 
         <p>
             <a class="btn btn-outline-primary btn-sm float-end" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -33,6 +33,6 @@
                 </fieldset>
             </form>
         </div>
-        </div>
+    </div>
 
-         <script src="{BASE_URL}/js/filtroAvanzado.js"></script>
+    <script src="{BASE_URL}/js/filtroAvanzado.js"></script>
