@@ -4,6 +4,7 @@
 require_once './Model/ProductoModel.php';
 require_once './Model/CategoriaModel.php';
 require_once './View/ProductoView.php';
+require_once './Model/ComentariosModel.php';
 
 
 class ProductoController {
@@ -12,19 +13,27 @@ class ProductoController {
     private $productoView;
     private $categoriaModel;
     private $authHelper;
+    private $comentariosModel;
 
     function __construct() {
         $this->productoModel = new ProductoModel();
         $this->categoriaModel = new CategoriaModel();
         $this->authHelper = new AuthHelper();
-        $this->productoView = new ProductoView($this->categoriaModel->getCategorias(), $this->authHelper->loggedIn());  
+        $this->productoView = new ProductoView($this->categoriaModel->getCategorias(), $this->authHelper->loggedIn()); 
+        $this->comentariosModel = new ComentariosModel(); 
     }
 
     function eliminarProducto($id){
         //Elimina el producto solo si esta loggeado y si el rol es administrador
         if ($this->authHelper->loggedIn() && $this->authHelper->getRole() == 1){
-            $this->productoModel->eliminarProductoDeDB($id);
-            header("Location: ".BASE_URL."verProductos"); 
+            $comentarios = $this->comentariosModel->getComentariosByIdProducto($id);
+            if(!$comentarios) {
+                $this->productoModel->eliminarProductoDeDB($id);
+                header("Location: ".BASE_URL."verProductos"); 
+            } else {
+                $error = 'No es posible eliminar el producto porque hay comentarios vinculados. Primero eliminarlos.';
+                $this->productoView->showProducts($this->productoModel->getProducts(), $this->authHelper->getRole(), $this->authHelper->loggedIn(), null, $error);
+            }
         }
         
     }
@@ -51,7 +60,7 @@ class ProductoController {
 
     function showProduct($id) {
         $producto = $this->productoModel->getProduct($id);
-        $this->productoView->showProduct($producto, $this->authHelper->getRole(),$this->authHelper->loggedIn(),$this->authHelper->getUserID() );
+        $this->productoView->showProduct($producto, $this->authHelper->getRole(),$this->authHelper->loggedIn(),$this->authHelper->getUserID());
     }
     
 
