@@ -65,4 +65,10 @@ class ComentariosModel {
         return $this->db->lastInsertId();
 
     }
+
+    function getComentarioByUserID($id_user){
+        $sentencia = $this->db->prepare("SELECT * FROM productoreview WHERE id_user = ?");
+        $sentencia->execute(array($id_user));
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
 }

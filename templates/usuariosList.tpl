@@ -34,6 +34,11 @@
                     </div>
                 {/foreach}
             </div>
+            {if $error}
+                <div class="container alert alert-danger" role="alert">
+                    {$error}
+                </div>
+            {/if}
         </div>
     </div>
 

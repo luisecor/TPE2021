@@ -4,17 +4,20 @@ require_once 'View/UsuariosView.php';
 require_once 'Model/UsuariosModel.php';
 require_once 'Helpers/AuthHelper.php';
 require_once 'Model/CategoriaModel.php';
+require_once 'Model/ComentariosModel.php';
 
 
 class UsuariosController {
 
     private $model;
+    private $comentariosModel;
     private $categoriasModel;
     private $view;
     private $authHelper;
 
     function __construct(){
         $this->model = new UsuariosModel();
+        $this->comentariosModel = new ComentariosModel();
         $this->categoriasModel = new CategoriaModel();
         $this->authHelper = new AuthHelper();
         $this->view = new UsuariosView($this->categoriasModel->getCategorias(), false);
@@ -88,8 +91,16 @@ class UsuariosController {
     }
 
     function eliminarUsuario($id) {
-        $this->model->eliminarUsuario($id);
-        header("Location: ".BASE_URL."home"); 
+        $comentarios = $this->comentariosModel->getComentarioByUserID($id);
+        if (!$comentarios){
+            $this->model->eliminarUsuario($id);
+            header("Location: ".BASE_URL."home"); 
+        } else {
+            $error = "No es posible eliminar usuario dado que tiene comentarios asociados";
+            $usuarios = $this->model->getUsaurios();
+            $this->view->showUsuarios($usuarios,$error);
+        }
+        
     }
 
     function showFormUser($id) {

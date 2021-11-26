@@ -32,10 +32,11 @@ class UsuariosView{
         header("Location: ".BASE_URL."home");
     }
 
-    function showUsuarios($usuarios) {
+    function showUsuarios($usuarios,$error = null) {
         $this->smarty->assign('logueado', true);
         $this->smarty->assign('roleUser', 1);
         $this->smarty->assign('usuarios', $usuarios);
+        $this->smarty->assign('error', $error);
         $this->smarty->display('templates/usuariosList.tpl');
     }
 
