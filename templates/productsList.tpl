@@ -1,15 +1,9 @@
 {include file="header.tpl"}
 <div class="row justify-content-md-center">
     <div class="col-11">
-
-       
-
         <div class="container text-center">
             <h2 class="text-center m-md-3 p-md-3">Lista de productos</h2>
-
-       {include file="filtroAvanzado.tpl"}
-
-   
+            {include file="filtroAvanzado.tpl"}
         </div>  
         <div class="row border p-1">
             <div class="row">
@@ -25,12 +19,7 @@
                 <div class="col">
                     <h5> Descripcion </h5>
                 </div>
-            </div>
-            {if $error}
-                <div class="container alert alert-danger p-md-2 m-md-3" role="alert">
-                    {$error}
-                </div>
-            {/if}    
+            </div>  
             <div class="accordion accordion-flush p-md-2 m-md-3">
                 {foreach from=$productos item=$producto}
                     <div class="row">
@@ -49,6 +38,11 @@
                         </div>
                     </div>
                 {/foreach}
+                {if $error}
+                    <div class="container alert alert-danger p-md-2 m-md-3" role="alert">
+                        {$error}
+                    </div>
+                {/if}  
             </div>
         </div>
     </div>

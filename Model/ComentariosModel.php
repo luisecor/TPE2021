@@ -63,7 +63,13 @@ class ComentariosModel {
         $sentencia = $this->db->prepare("INSERT INTO productoreview(id_producto, id_user, puntaje, review) VALUES(?, ?, ?, ?)");
         $sentencia->execute(array($id_producto, $id_user,$puntaje, $review ));
         return $this->db->lastInsertId();
+    }
 
+    function getComentariosByIdProducto($id_producto) {
+        $sentencia = $this->db->prepare( "SELECT * FROM productoreview WHERE id_producto = ?");
+        $sentencia->execute(array($id_producto));
+        $comentario = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $comentario;
     }
 
     function getComentarioByUserID($id_user){
