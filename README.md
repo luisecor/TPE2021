@@ -12,6 +12,7 @@ Tecnologias utilizadas:
 * Js
 * Bootsrap
 * VUE.js
+* Smarty
 * MySQL
 * API REST
 
