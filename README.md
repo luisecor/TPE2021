@@ -15,6 +15,7 @@ Tecnologias utilizadas:
 * Smarty
 * MySQL
 * API REST
+* HTACCESS
 
 
 
